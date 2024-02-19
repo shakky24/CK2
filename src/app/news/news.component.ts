@@ -142,14 +142,14 @@ export class NewsComponent implements OnInit {
 
   clickOnReview(movie: any) {
     // this.sharedDataService.updateNewsData(movie);
-    this.router.navigate([`home-page/news/${movie?.id}`], { state: { data: movie } });
+    this.router.navigate([`news/${movie?.id}`], { state: { data: movie } });
   }
 
   showFullReview(movie: any) {
 
     // this.sharedDataService.updateMovieDataFromReview(movie);
 
-    this.router.navigate([`home-page/news/${movie?.id}`], { state: { data: movie } });
+    this.router.navigate([`news/${movie?.id}`], { state: { data: movie } });
 
     // item.review = !item.review;
   }
