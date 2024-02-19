@@ -4,8 +4,8 @@ import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SplitParagraphPipe } from 'src/app/pipes/split-paragraph.pipe';
 import { SharedDataService } from 'src/app/services/SharedDataService';
+import { MovieService } from 'src/app/services/movies.service';
 import { SEOService } from 'src/app/services/seo.service';
-import { NEWS } from 'src/assets/images/news/news';
 
 @Component({
   selector: 'app-single-news',
@@ -40,6 +40,7 @@ export class SingleNewsComponent implements OnInit {
     private readonly router: Router,
     private route: ActivatedRoute,
     private meta: Meta,
+    private movieService: MovieService
   ) {
 
     // this.meta.addTag({ property: 'og:description', content: "1" });
@@ -58,7 +59,8 @@ export class SingleNewsComponent implements OnInit {
       console.log(this.title)
     });
 
-    this.data = NEWS.filter(ele => {
+    this.movieService.getMovieNews().subscribe((ele: any) => {
+      console.log(ele)
       if (ele.id == this.id) {
         this.movieName = ele.movieName;
         this.description = ele.description;
@@ -79,6 +81,28 @@ export class SingleNewsComponent implements OnInit {
         // console.log("updated", this.meta.getTag("'property=og:description'"))
       }
     })
+
+    // this.data = NEWS.filter(ele => {
+    //   if (ele.id == this.id) {
+    //     this.movieName = ele.movieName;
+    //     this.description = ele.description;
+    //     this.imageSource = ele.image
+    //     this.meta.addTag({ name: 'description', content: ele.description });
+    //     this.meta.addTag({ name: 'image', content: `https://cinemakompany.com/${ele.image}` });
+    //     this.meta.addTag({ name: 'title', content: ele.movieName });
+    //     this.meta.addTag({ name: 'description', content: ele.description });
+    //     this.meta.addTag({ name: 'image', content: `https://cinemakompany.com/${ele.image}` });
+    //     this.meta.addTag({ name: 'title', content: ele.movieName });
+
+    //     this.meta.addTag({ property: 'og:description', content: ele.description });
+    //     this.meta.addTag({ property: 'og:image', content: ele.image });
+    //     this.meta.addTag({ property: 'og:title', content: ele.movieName });
+    //     this.meta.updateTag({ property: 'og:description', content: ele.description });
+    //     this.meta.updateTag({ property: 'og:image', content: `https://cinemakompany.com/${ele.image}` });
+    //     this.meta.updateTag({ property: 'og:title', content: ele.movieName });
+    //     // console.log("updated", this.meta.getTag("'property=og:description'"))
+    //   }
+    // })
     // this.meta.addTag({ property: 'og:description', content: 'hello welcome' });
     // this.meta.addTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
     // this.meta.addTag({ property: 'og:url', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });

@@ -39,7 +39,7 @@ export class MovieService {
 
   getMovieNews(): Observable<any[]> {
     // return this.http.get<any[]>('assets/images/news/news.json');
-    return this.http.get<any[]>('https://jsonplaceholder.typicode.com/todos/1');
+    return this.http.get<any[]>('https://cinemakompany.com/assets/images/news/news.json');
 
   }
 
