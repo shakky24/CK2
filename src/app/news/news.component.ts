@@ -1,16 +1,18 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NEWS } from 'src/assets/images/news/news';
 import { SplitParagraphPipe } from '../pipes/split-paragraph.pipe';
+import { MovieService } from '../services/movies.service';
 
-@Component({ 
+@Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.scss'],
-  standalone:true,
-  imports:[CommonModule, SplitParagraphPipe],
+  standalone: true,
+  imports: [CommonModule, SplitParagraphPipe, HttpClientModule],
+  providers:[MovieService, HttpClient]
 })
 export class NewsComponent implements OnInit {
   items: any[] = [];
@@ -20,7 +22,8 @@ export class NewsComponent implements OnInit {
   constructor(
     private titleService: Title,
     private router: Router,
-    private meta: Meta
+    private meta: Meta,
+    private movieService: MovieService
   ) {
 
     // this.meta.addTag(
@@ -120,8 +123,12 @@ export class NewsComponent implements OnInit {
     //   this.items = data;
     // });
 
-    NEWS.sort((a: any, b: any) => a.id - b.id);
-    this.items = NEWS;
+    // NEWS.sort((a: any, b: any) => a.id - b.id);
+    // this.items = NEWS;
+    this.movieService.getMovieNews().subscribe((ele: any) => {
+      ele.sort((a: any, b: any) => a.id - b.id);
+      this.items = ele;
+    })
   }
 
 

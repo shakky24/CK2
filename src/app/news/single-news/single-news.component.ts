@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,7 +12,7 @@ import { SEOService } from 'src/app/services/seo.service';
   selector: 'app-single-news',
   templateUrl: './single-news.component.html',
   styleUrls: ['./single-news.component.scss'],
-  providers: [SharedDataService, SEOService, SplitParagraphPipe],
+  providers: [SharedDataService, SEOService, SplitParagraphPipe, MovieService, HttpClient],
   standalone: true,
   imports: [CommonModule],
 })
