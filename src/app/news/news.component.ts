@@ -23,20 +23,20 @@ export class NewsComponent implements OnInit {
     private meta: Meta
   ) {
 
-    this.meta.addTag(
-      { name: 'description', content: 'summary_large_image' },
-    );
+    // this.meta.addTag(
+    //   { name: 'description', content: 'summary_large_image' },
+    // );
 
-    this.meta.addTag({ property: 'og:description', content: "desc" })
+    // this.meta.addTag({ property: 'og:description', content: "desc" })
 
   }
 
   ngOnInit() {
 
-    setTimeout(() => {
+    // setTimeout(() => {
 
-      console.log("this.meta", this.meta.getTags('description'), this.meta.getTag('name=description'), this.meta.getTag('title'), this.meta)
-    }, 5000)
+    //   console.log("this.meta", this.meta.getTags('description'), this.meta.getTag('name=description'), this.meta.getTag('title'), this.meta)
+    // }, 5000)
 
 
     // this.router.events
