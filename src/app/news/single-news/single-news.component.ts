@@ -33,6 +33,7 @@ export class SingleNewsComponent implements OnInit {
   reviewLength: number = 1000;
   sEOService: any;
   data: any;
+  id: any;
 
   constructor(
     private sharedDataService: SharedDataService,
@@ -42,34 +43,35 @@ export class SingleNewsComponent implements OnInit {
   ) {
 
     this.meta.addTag({ property: 'og:description', content: "1" });
-          this.meta.addTag({ property: 'og:image', content: "1" });
-          this.meta.addTag({ property: 'og:title', content: "1"});
-          this.meta.addTag({ property: 'og:description', content: "2" });
-          this.meta.addTag({ property: 'og:image', content: "2" });
-          this.meta.addTag({ property: 'og:title', content: "2"});
+    this.meta.addTag({ property: 'og:image', content: "1" });
+    this.meta.addTag({ property: 'og:title', content: "1" });
+    this.meta.addTag({ property: 'og:description', content: "2" });
+    this.meta.addTag({ property: 'og:image', content: "2" });
+    this.meta.addTag({ property: 'og:title', content: "2" });
 
     this.route.params.subscribe(params => {
       console.log(params)
       // const imageURL = `https://cinemakompany.com/assets/images/reviews/${movieName}.jpg`;
       // this.metaService.updateTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
-      const id = params['movie_id'];
-      this.loadMovieData(id);
+      this.id = params['movie_id'];
+      this.loadMovieData(this.id);
       console.log(this.title)
-
-      this.data = NEWS.filter(ele => {
-        if (ele.id == id) {
-          this.movieName = ele.movieName;
-          this.description = ele.description;
-          this.imageSource = ele.image
-          this.meta.addTag({ property: 'og:description', content: ele.description });
-          this.meta.addTag({ property: 'og:image', content: `https://cinemakompany.com/${ele.image}` });
-          this.meta.addTag({ property: 'og:title', content: ele.movieName });
-          this.meta.updateTag({ property: 'og:description', content: ele.description });
-          this.meta.updateTag({ property: 'og:image', content: `https://cinemakompany.com/${ele.image}` });
-          this.meta.updateTag({ property: 'og:title', content: ele.movieName });
-        }
-      })
     });
+
+    this.data = NEWS.filter(ele => {
+      if (ele.id == this.id) {
+        this.movieName = ele.movieName;
+        this.description = ele.description;
+        this.imageSource = ele.image
+        this.meta.addTag({ property: 'og:description', content: ele.description });
+        this.meta.addTag({ property: 'og:image', content: `https://cinemakompany.com/${ele.image}` });
+        this.meta.addTag({ property: 'og:title', content: ele.movieName });
+        this.meta.updateTag({ property: 'og:description', content: ele.description });
+        this.meta.updateTag({ property: 'og:image', content: `https://cinemakompany.com/${ele.image}` });
+        this.meta.updateTag({ property: 'og:title', content: ele.movieName });
+        console.log("updated", this.meta.getTag("'og:description'"))
+      }
+    })
     // this.meta.addTag({ property: 'og:description', content: 'hello welcome' });
     // this.meta.addTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
     // this.meta.addTag({ property: 'og:url', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
@@ -100,7 +102,7 @@ export class SingleNewsComponent implements OnInit {
     //  }); 
 
 
-    
+
 
 
 
