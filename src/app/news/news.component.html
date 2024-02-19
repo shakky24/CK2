@@ -8,7 +8,7 @@
 <!-- </div> -->
 <div class="image-grid">
   <div (click)="clickOnReview(item)" *ngFor="let item of items" class="grid-item">
-    <img [src]="item.image" alt="Image" class="image">
+    <img [src]="https://cinemakompany.com/{{item.image}}" alt="Image" class="image">
     <p style="font-family: Jost;font-size: 2rem;font-weight: 700;padding: 1rem;line-height: 1.4;">{{ item?.movieName }}</p>
     <p style="font-family: Jost;font-weight: 400;font-size: 1.2rem; word-wrap: break-word;overflow-wrap: break-word;line-height: 1.2;">{{ item?.description }}</p>
    
