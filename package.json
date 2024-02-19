@@ -11,7 +11,8 @@
     "serve:ssr": "node dist/app-sample/server/main.js",
     "build:ssr": "ng build && ng run app-sample:server",
     "prerender": "ng run app-sample:prerender",
-    "serve:ssr:app-sample": "node dist/app-sample/server/main.js"
+    "serve:ssr:app-sample": "node dist/app-sample/server/main.js",
+    "vercel-build": "npm run build:ssr"
   },
   "private": true,
   "dependencies": {
