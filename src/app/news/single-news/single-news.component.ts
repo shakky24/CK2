@@ -41,6 +41,13 @@ export class SingleNewsComponent implements OnInit {
     private meta: Meta,
   ) {
 
+    this.meta.addTag({ property: 'og:description', content: "1" });
+          this.meta.addTag({ property: 'og:image', content: "1" });
+          this.meta.addTag({ property: 'og:title', content: "1"});
+          this.meta.addTag({ property: 'og:description', content: "2" });
+          this.meta.addTag({ property: 'og:image', content: "2" });
+          this.meta.addTag({ property: 'og:title', content: "2"});
+
     this.route.params.subscribe(params => {
       console.log(params)
       // const imageURL = `https://cinemakompany.com/assets/images/reviews/${movieName}.jpg`;

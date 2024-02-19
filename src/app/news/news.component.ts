@@ -27,7 +27,7 @@ export class NewsComponent implements OnInit {
     //   { name: 'description', content: 'summary_large_image' },
     // );
 
-    // this.meta.addTag({ property: 'og:description', content: "desc" })
+    this.meta.addTag({ property: 'og:description', content: "news component" })
 
   }
 
