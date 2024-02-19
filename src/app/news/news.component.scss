@@ -1,0 +1,57 @@
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+    overflow-x: auto;
+  }
+  
+  .grid-item {
+    // display: grid;
+    // : column;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #353535;
+    border-radius: 5px;
+  }
+  
+  .image {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .description {
+    margin-top: 10px;
+    text-align: justify;
+  }
+  
+  
+  
+  .header {
+    background-color: #333;
+    color: #fff;
+    display: grid;
+    padding: 20px;
+    text-align: center;
+    font-size: large;
+    border: 1px solid white;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+  
+  /* Hide the horizontal scrollbar */
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  
+  /* Optional: Style the track (the area behind the thumb) */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  /* Optional: Style the thumb (the draggable part of the scrollbar) */
+  ::-webkit-scrollbar-thumb {
+    background: transparent;
+  }

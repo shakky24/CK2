@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "RDX",
+    "duration":"2h 00mins",
+    "platForm": "Netflix",
+    "rating": 4,
+    "type":"Family Action",
+    "image": "assets/images/advertisement/adujeevtiham_trailer.jpg",
+    "description": "This is a great movie."
+  },
+  {
+    "id": 2,
+    "title": "Jailer",
+    "duration":"2h 00mins",
+    "rating": 4,
+    "platForm": "Netflix",
+    "type":"Family Action",
+    "image": "assets/images/advertisement/lilli.jpg",
+    "subDiscription": "",
+    "description": "Another awesome movie."
+  },
+  {
+    "id": 3,
+    "title": "Lucifer",
+    "type":"Mass Action",
+    "rating": 4,
+    "platForm": "Netflix",
+    "duration":"2h 00mins",
+    "image": "assets/images/advertisement/vellam.jpg",
+    "subDiscription": "",
+    "description": "Another awesome movie."
+  },
+  {
+    "id": 4,
+    "title": "Neymar",
+    "duration":"2h 00mins",
+    "platForm": "Netflix",
+    "rating": 3,
+    "type":"Family comedy",
+    "image": "assets/images/advertisement/lilli.jpg",
+    "subDiscription": "",
+    "description": "Another awesome movie."
+  },
+  {
+    "id": 5,
+    "title": "2018",
+    "duration":"2h 00mins",
+    "platForm": "Netflix",
+    "type":"Thriller",
+    "rating": 4,
+    "image": "assets/images/advertisement/lilli.jpg",
+    "subDiscription": "",
+    "description": "Another awesome movie."
+  }
+]

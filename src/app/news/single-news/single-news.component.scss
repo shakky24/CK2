@@ -1,0 +1,73 @@
+.container {
+    display: grid;
+    place-items: center; /* Center content both horizontally and vertically */
+    grid-template-rows: 2fr auto; /* 75% top, remaining bottom */
+    min-height: 100vh; /* Ensure the container takes up at least the full viewport height */
+  }
+  .top-section{
+    display: grid;
+    justify-self: center;
+    margin: 2rem;
+    text-align: center;
+    // height: 90vh;
+    overflow: auto;
+    // width: 70vw;
+    // grid-template-rows: 1fr 2fr;
+  }
+  
+  .top-section img {
+    max-width: 75%;
+    // max-height: 30%;
+    // object-fit: contain;
+    // height: auto;
+  }
+  
+  .top-section p {
+    font-size: 18px; /* Adjust as needed */
+  }
+  
+  @media (max-width: 768px) {
+    .top-section p {
+      font-size: 16px;
+    }
+    
+    
+  }
+  
+  .bottom-section {
+    display: grid;
+    grid-row: 2 / 3;
+    margin: 1rem .4rem;
+  }
+  
+  .star-rating {
+    margin: 1rem 0;
+    font-size: 24px;
+    text-align: start;
+    padding: .6rem 0;
+  }
+  
+  .star {
+    color: #ccc; /* Default star color */
+  }
+  
+  .star.filled {
+    color: #FFD700; /* Filled star color */
+  } 
+
+  
+/* Hide the horizontal scrollbar */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Optional: Style the track (the area behind the thumb) */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Optional: Style the thumb (the draggable part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}

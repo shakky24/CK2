@@ -1,0 +1,56 @@
+[
+  {
+    "id": 3,
+    "title": "Madhura Manohara Moham",
+    "duration": "2h 00min",
+    "platForm": "Netflix",
+    "type":"Family Drama",
+    "rating": 3,
+    "imageURL": "assets/images/NowinOTT/neru.jpg",
+    "description": "This is a great movie."
+  },
+  {
+    "id": 2,
+    "title": "Neymar",
+    "duration": "2h 00min",
+    "type":"Comedy",
+    "rating": 3,
+    "platForm": "Netflix",
+    "imageURL": "assets/images/NowinOTT/neru.jpg",
+    "subDiscription": "",
+    "description": "Another awesome movie."
+  },
+  {
+    "id": 3,
+    "title": "Padmini",
+    "duration": "2h 00min",
+    "type":"Family Drama",
+    "platForm": "Netflix",
+    "rating": 3,
+    "imageURL": "assets/images/NowinOTT/ARM_potrait.jpg",
+    "subDiscription": "",
+    "description": "Another awesome movie."
+  },
+  {
+    "id": 4,
+    "title": "Guppy",
+    "duration": "2h 00min",
+    "type":"Family Drama",
+    "platForm": "Netflix",
+    "rating": 4,
+    "imageURL": "assets/images/NowinOTT/kaathal_potrait.jpg",
+    "subDiscription": "",
+    "description": "Another awesome movie."
+  },
+  {
+    "id": 1,
+    "title": "Alone",
+    "duration": "2h 00min",
+    "type":"Drama",
+    "rating": 4,
+    "platForm": "Netflix",
+    "imageURL": "assets/images/NowinOTT/Chaaver_potrait.jpg",
+    "subDiscription": "",
+    "description": "Another awesome movie."
+  }
+]

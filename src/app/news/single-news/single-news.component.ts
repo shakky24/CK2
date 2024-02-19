@@ -1,0 +1,195 @@
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SharedDataService } from 'src/app/services/SharedDataService';
+
+@Component({
+  selector: 'app-single-news',
+  templateUrl: './single-news.component.html',
+  styleUrls: ['./single-news.component.scss'],
+  providers: [SharedDataService,],
+  standalone:true,
+  imports:[CommonModule],
+})
+export class SingleNewsComponent implements OnInit {
+  imageSource = '';
+  description = 'Your long description goes here Your long description goes here Your long description goes here Your long description goes here Your long description goes here Your long description goes here  ...';
+  descriptionLimit = 150; // Adjust this as needed
+  title: string = '';
+  news: string = '';
+  rating: number = 3;
+  movieName: string = '';
+  verdict: string = '';
+  paragrapgh2: string = '';
+  paragrapgh3: string = '';
+  paragrapgh4: string = '';
+  paragrapgh5: string = '';
+  paragrapgh6: string = '';
+  paragrapgh7: string = '';
+  reviewLength: number = 1000;
+
+  constructor(
+    private sharedDataService: SharedDataService,
+    private readonly router: Router,
+    private route: ActivatedRoute,
+    private meta: Meta,
+  ) {
+    this.meta.addTag({ property: 'og:description', content: 'hello welcome' });
+    this.meta.addTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
+    this.meta.addTag({ property: 'og:url', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
+    this.meta.updateTag({ property: 'og:description', content: 'hello welcome' });
+    this.meta.updateTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
+    this.meta.updateTag({ property: 'og:url', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
+  }
+
+  ngOnInit(): void {
+
+    setTimeout(()=>{
+
+      console.log("this.meta", this.meta.getTags('description'),this.meta.getTag('property="og:description"'), this.meta.getTag('title'), this.meta)
+    }, 5000)
+
+    // this.router.events.pipe(
+    //   filter((event) => event instanceof NavigationEnd),
+    //   map(() => this.route),
+    //   map((route) => {
+    //     while (route.firstChild) route = route.firstChild;
+    //     return route;
+    //   }),
+    //   filter((route) => route.outlet === 'primary'),
+    //   mergeMap((route) => route.data)
+    //  )
+    //  .subscribe((event) => {
+    //    this.sEOService.updateTitle(event['title']);
+    //    this.sEOService.updateOgUrl(event['ogUrl']);
+    //    //Updating Description tag dynamically with title
+    //    this.sEOService.updateDescription(event['title'] + event['description'])
+    //  }); 
+
+
+
+
+
+
+
+
+
+
+
+    // this.metaService.updateTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
+
+    // this.imageSource = 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg';
+    // this.updateOgImageMetaTag();
+    // // this.metaService.addTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' }, true);
+
+    this.route.params.subscribe(params => {
+      // const imageURL = `https://cinemakompany.com/assets/images/reviews/${movieName}.jpg`;
+      // this.metaService.updateTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
+      const id = params['movie_id'];
+      this.loadMovieData(id);
+    });
+  }
+
+  updateOgImageMetaTag() {
+    this.meta.updateTag({ property: 'og:image', content: this.imageSource });
+  }
+
+
+  showFullDescription() {
+    this.descriptionLimit = this.description.length;
+  }
+  showFullReview() {
+    this.reviewLength = this.news.length;
+  }
+  onMoreReviewClick() {
+
+    this.router.navigate(['home-page/reviews']);
+  }
+
+  loadMovieData(id: string): void {
+    const data = this.sharedDataService.getNewsData();
+
+    if (data) {
+
+      // Assuming the data is stored as an object with movie IDs as keys
+
+      if (data.id == id) {
+
+
+        // // this.titleService.setTitle(`${data?.movieName} Review`);
+        // // this.metaService.updateTag({ property: 'og:title', content: `${data?.movieName} Movie Review From CinemaKompany` });
+        // // this.metaService.updateTag({ property: 'og:description', content: data?.review });
+        // // const imageURL = `https://cinemakompany.com/assets/images/reviews/${data?.movieName}.jpg`;
+
+        // // Compress and update image
+        // this.compressAndUpdateImage(imageURL);
+        this.imageSource = data?.image;
+
+
+
+
+
+
+        this.title = data?.title;
+        this.rating = data?.rating;
+        this.movieName = data?.movieName;
+        this.verdict = data?.verdict;
+        this.paragrapgh2 = data?.paragrapgh2;
+        this.paragrapgh3 = data?.paragrapgh3;
+        this.paragrapgh4 = data?.paragrapgh4;
+        this.paragrapgh5 = data?.paragrapgh5;
+        this.paragrapgh6 = data?.paragrapgh6;
+        this.paragrapgh7 = data?.paragrapgh7;
+        this.description = data?.description;
+        this.news = data?.news;
+      }
+    }
+  }
+
+  shareContent(): void {
+    const dynamicContent = {
+      title: 'Dynamic Title',
+      description: 'Dynamic Description',
+      imageUrl: 'https://cinemakompany.com/assets/images/reviews/${data?.movieName}.jpg',
+      url: 'https://example.com/content/1' // Replace '1' with the actual content ID
+    };
+
+    const shareUrl = `whatsapp://send?text=${encodeURIComponent(dynamicContent.title + ' - ' + dynamicContent.description + '\n' + dynamicContent.url)}`;
+
+    window.location.href = shareUrl;
+  }
+
+
+  copyToClipboard(): void {
+    const shareableUrl = this.getShareableUrl();
+    const textField = document.createElement('textarea');
+    textField.innerText = shareableUrl;
+    document.body.appendChild(textField);
+    textField.select();
+    document.execCommand('copy');
+    textField.remove();
+    alert('Link copied to clipboard!');
+  }
+  dynamicContent = {
+    title: 'Review Cinema Kompany',
+    description: 'Dynamic Description',
+    imageUrl: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg',
+    url: 'https://example.com/content/1' // Replace '1' with the actual content ID
+  };
+
+  getShareableUrl(): string {
+    this.updateDynamicContent();
+    return `${this.dynamicContent.url}`;
+  }
+
+
+
+  updateDynamicContent(): void {
+    // Perform any operations to update dynamic content
+    this.dynamicContent.description = `${this.movieName} Review`;
+    this.dynamicContent.imageUrl = `${this.imageSource}`;
+    this.dynamicContent.url = `https://Review-of-${this.movieName}.com/`;
+  }
+
+}
