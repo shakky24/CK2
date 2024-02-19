@@ -65,7 +65,7 @@ export class SingleNewsComponent implements OnInit {
       if (ele.id == this.id) {
         this.movieName = ele.movieName;
         this.description = ele.description;
-        this.imageSource = ele.image
+        this.imageSource = `https://cinemakompany.com/${ele.image}`
         this.meta.addTag({ name: 'description', content: ele.description });
         this.meta.addTag({ name: 'image', content: `https://cinemakompany.com/${ele.image}` });
         this.meta.addTag({ name: 'title', content: ele.movieName });

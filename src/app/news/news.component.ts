@@ -30,8 +30,8 @@ export class NewsComponent implements OnInit {
     //   { name: 'description', content: 'summary_large_image' },
     // );
 
-    this.meta.addTag({ property: 'og:description', content: "news component" })
-
+    this.meta.addTag({ property: 'og:description', content: "Cinema Kompany" })
+    this.meta.addTag({ property: 'og:image', content: "../../assets/images/logo3.png" });
   }
 
   ngOnInit() {
