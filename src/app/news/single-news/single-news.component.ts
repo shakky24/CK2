@@ -69,7 +69,7 @@ export class SingleNewsComponent implements OnInit {
         this.meta.updateTag({ property: 'og:description', content: ele.description });
         this.meta.updateTag({ property: 'og:image', content: `https://cinemakompany.com/${ele.image}` });
         this.meta.updateTag({ property: 'og:title', content: ele.movieName });
-        console.log("updated", this.meta.getTag("'property=og:description'"))
+        // console.log("updated", this.meta.getTag("'property=og:description'"))
       }
     })
     // this.meta.addTag({ property: 'og:description', content: 'hello welcome' });
