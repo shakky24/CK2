@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,7 +14,7 @@ import { SEOService } from 'src/app/services/seo.service';
   styleUrls: ['./single-news.component.scss'],
   providers: [SharedDataService, SEOService, SplitParagraphPipe, MovieService, HttpClient],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
 })
 export class SingleNewsComponent implements OnInit {
   imageSource = '';
