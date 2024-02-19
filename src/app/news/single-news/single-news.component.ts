@@ -69,8 +69,9 @@ export class SingleNewsComponent implements OnInit {
         this.meta.addTag({ name: 'description', content: ele.description });
         this.meta.addTag({ name: 'image', content: `https://cinemakompany.com/${ele.image}` });
         this.meta.addTag({ name: 'title', content: ele.movieName });
+
         this.meta.addTag({ property: 'og:description', content: ele.description });
-        this.meta.addTag({ property: 'og:image', content: `https://cinemakompany.com/${ele.image}` });
+        this.meta.addTag({ property: 'og:image', content: ele.image });
         this.meta.addTag({ property: 'og:title', content: ele.movieName });
         this.meta.updateTag({ property: 'og:description', content: ele.description });
         this.meta.updateTag({ property: 'og:image', content: `https://cinemakompany.com/${ele.image}` });
