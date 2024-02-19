@@ -42,12 +42,12 @@ export class SingleNewsComponent implements OnInit {
     private meta: Meta,
   ) {
 
-    this.meta.addTag({ property: 'og:description', content: "1" });
-    this.meta.addTag({ property: 'og:image', content: "1" });
-    this.meta.addTag({ property: 'og:title', content: "1" });
-    this.meta.addTag({ property: 'og:description', content: "2" });
-    this.meta.addTag({ property: 'og:image', content: "2" });
-    this.meta.addTag({ property: 'og:title', content: "2" });
+    // this.meta.addTag({ property: 'og:description', content: "1" });
+    // this.meta.addTag({ property: 'og:image', content: "1" });
+    // this.meta.addTag({ property: 'og:title', content: "1" });
+    // this.meta.addTag({ property: 'og:description', content: "2" });
+    // this.meta.addTag({ property: 'og:image', content: "2" });
+    // this.meta.addTag({ property: 'og:title', content: "2" });
 
     this.route.params.subscribe(params => {
       console.log(params)
@@ -69,7 +69,7 @@ export class SingleNewsComponent implements OnInit {
         this.meta.updateTag({ property: 'og:description', content: ele.description });
         this.meta.updateTag({ property: 'og:image', content: `https://cinemakompany.com/${ele.image}` });
         this.meta.updateTag({ property: 'og:title', content: ele.movieName });
-        console.log("updated", this.meta.getTag("'og:description'"))
+        console.log("updated", this.meta.getTag("'property=og:description'"))
       }
     })
     // this.meta.addTag({ property: 'og:description', content: 'hello welcome' });
