@@ -1,14 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter, map, mergeMap } from 'rxjs';
 import { SharedDataService } from 'src/app/services/SharedDataService';
+import { SEOService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-single-news',
   templateUrl: './single-news.component.html',
   styleUrls: ['./single-news.component.scss'],
-  providers: [SharedDataService,],
+  providers: [SharedDataService,SEOService],
   standalone:true,
   imports:[CommonModule],
 })
@@ -28,6 +30,7 @@ export class SingleNewsComponent implements OnInit {
   paragrapgh6: string = '';
   paragrapgh7: string = '';
   reviewLength: number = 1000;
+  sEOService: any;
 
   constructor(
     private sharedDataService: SharedDataService,
@@ -35,37 +38,34 @@ export class SingleNewsComponent implements OnInit {
     private route: ActivatedRoute,
     private meta: Meta,
   ) {
-    this.meta.addTag({ property: 'og:description', content: 'hello welcome' });
-    this.meta.addTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
-    this.meta.addTag({ property: 'og:url', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
-    this.meta.updateTag({ property: 'og:description', content: 'hello welcome' });
-    this.meta.updateTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
-    this.meta.updateTag({ property: 'og:url', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
+    // this.meta.addTag({ property: 'og:description', content: 'hello welcome' });
+    // this.meta.addTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
+    // this.meta.addTag({ property: 'og:url', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
+    // this.meta.updateTag({ property: 'og:description', content: 'hello welcome' });
+    // this.meta.updateTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
+    // this.meta.updateTag({ property: 'og:url', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
   }
 
   ngOnInit(): void {
 
-    setTimeout(()=>{
 
-      console.log("this.meta", this.meta.getTags('description'),this.meta.getTag('property="og:description"'), this.meta.getTag('title'), this.meta)
-    }, 5000)
-
-    // this.router.events.pipe(
-    //   filter((event) => event instanceof NavigationEnd),
-    //   map(() => this.route),
-    //   map((route) => {
-    //     while (route.firstChild) route = route.firstChild;
-    //     return route;
-    //   }),
-    //   filter((route) => route.outlet === 'primary'),
-    //   mergeMap((route) => route.data)
-    //  )
-    //  .subscribe((event) => {
-    //    this.sEOService.updateTitle(event['title']);
-    //    this.sEOService.updateOgUrl(event['ogUrl']);
-    //    //Updating Description tag dynamically with title
-    //    this.sEOService.updateDescription(event['title'] + event['description'])
-    //  }); 
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this.route),
+      map((route) => {
+        while (route.firstChild) route = route.firstChild;
+        return route;
+      }),
+      filter((route) => route.outlet === 'primary'),
+      mergeMap((route) => route.data)
+     )
+     .subscribe((event) => {
+      console.log(event)
+       this.sEOService.updateTitle(event['title']);
+       this.sEOService.updateOgUrl(event['ogUrl']);
+       //Updating Description tag dynamically with title
+       this.sEOService.updateDescription(event['title'] + event['description'])
+     }); 
 
 
 
