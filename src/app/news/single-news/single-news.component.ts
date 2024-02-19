@@ -1,18 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter, map, mergeMap } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SplitParagraphPipe } from 'src/app/pipes/split-paragraph.pipe';
 import { SharedDataService } from 'src/app/services/SharedDataService';
 import { SEOService } from 'src/app/services/seo.service';
+import { NEWS } from 'src/assets/images/news/news';
 
 @Component({
   selector: 'app-single-news',
   templateUrl: './single-news.component.html',
   styleUrls: ['./single-news.component.scss'],
-  providers: [SharedDataService,SEOService],
-  standalone:true,
-  imports:[CommonModule],
+  providers: [SharedDataService, SEOService, SplitParagraphPipe],
+  standalone: true,
+  imports: [CommonModule],
 })
 export class SingleNewsComponent implements OnInit {
   imageSource = '';
@@ -31,6 +32,7 @@ export class SingleNewsComponent implements OnInit {
   paragrapgh7: string = '';
   reviewLength: number = 1000;
   sEOService: any;
+  data: any;
 
   constructor(
     private sharedDataService: SharedDataService,
@@ -49,24 +51,47 @@ export class SingleNewsComponent implements OnInit {
   ngOnInit(): void {
 
 
-    this.router.events.pipe(
-      filter((event) => event instanceof NavigationEnd),
-      map(() => this.route),
-      map((route) => {
-        while (route.firstChild) route = route.firstChild;
-        return route;
-      }),
-      filter((route) => route.outlet === 'primary'),
-      mergeMap((route) => route.data)
-     )
-     .subscribe((event) => {
-      console.log(event)
-       this.sEOService.updateTitle(event['title']);
-       this.sEOService.updateOgUrl(event['ogUrl']);
-       //Updating Description tag dynamically with title
-       this.sEOService.updateDescription(event['title'] + event['description'])
-     }); 
+    // this.router.events.pipe(
+    //   filter((event) => event instanceof NavigationEnd),
+    //   map(() => this.route),
+    //   map((route) => {
+    //     while (route.firstChild) route = route.firstChild;
+    //     return route;
+    //   }),
+    //   filter((route) => route.outlet === 'primary'),
+    //   mergeMap((route) => route.data)
+    //  )
+    //  .subscribe((event) => {
+    //   console.log(event)
+    //    this.sEOService.updateTitle(event['title']);
+    //    this.sEOService.updateOgUrl(event['ogUrl']);
+    //    //Updating Description tag dynamically with title
+    //    this.sEOService.updateDescription(event['title'] + event['description'])
+    //  }); 
 
+
+    this.route.params.subscribe(params => {
+      console.log(params)
+      // const imageURL = `https://cinemakompany.com/assets/images/reviews/${movieName}.jpg`;
+      // this.metaService.updateTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
+      const id = params['movie_id'];
+      this.loadMovieData(id);
+      console.log(this.title)
+
+      this.data = NEWS.filter(ele => {
+        if (ele.id == id) {
+          this.movieName = ele.movieName;
+          this.description = ele.description;
+          this.imageSource = ele.image
+          this.meta.addTag({ property: 'og:description', content: ele.description });
+          this.meta.addTag({ property: 'og:image', content: `https://cinemakompany.com/${ele.image}` });
+          this.meta.addTag({ property: 'og:title', content: ele.movieName });
+          this.meta.updateTag({ property: 'og:description', content: ele.description });
+          this.meta.updateTag({ property: 'og:image', content: `https://cinemakompany.com/${ele.image}` });
+          this.meta.updateTag({ property: 'og:title', content: ele.movieName });
+        }
+      })
+    });
 
 
 
@@ -83,12 +108,7 @@ export class SingleNewsComponent implements OnInit {
     // this.updateOgImageMetaTag();
     // // this.metaService.addTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' }, true);
 
-    this.route.params.subscribe(params => {
-      // const imageURL = `https://cinemakompany.com/assets/images/reviews/${movieName}.jpg`;
-      // this.metaService.updateTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
-      const id = params['movie_id'];
-      this.loadMovieData(id);
-    });
+
   }
 
   updateOgImageMetaTag() {
