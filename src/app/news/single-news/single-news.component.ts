@@ -65,7 +65,8 @@ export class SingleNewsComponent implements OnInit {
       if (ele.id == this.id) {
         this.movieName = ele.movieName;
         this.description = ele.description;
-        this.imageSource = `https://cinemakompany.com/${ele.image}`
+        this.imageSource = ele.image;
+        console.log('sss',this.imageSource);
         this.meta.addTag({ name: 'description', content: ele.description });
         this.meta.addTag({ name: 'image', content: `https://cinemakompany.com/${ele.image}` });
         this.meta.addTag({ name: 'title', content: ele.movieName });
@@ -80,7 +81,6 @@ export class SingleNewsComponent implements OnInit {
         this.meta.updateTag({ property: 'og:image', content: `https://cinemakompany.com/${ele.image}` });
         this.meta.updateTag({ property: 'og:title', content: ele.movieName });
         // console.log("updated", this.meta.getTag("'property=og:description'"))
-        console.log(this.imageSource);
       }
     })
 
