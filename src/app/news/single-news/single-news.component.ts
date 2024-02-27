@@ -60,12 +60,14 @@ export class SingleNewsComponent implements OnInit {
       console.log(this.title)
     });
 
-    this.movieService.getMovieNews().subscribe((ele: any) => {
-      console.log(ele)
+    this.movieService.getMovieNews().subscribe((doc: any) => {
+      doc.map((ele:any) => {
+
       if (ele.id == this.id) {
         this.movieName = ele.movieName;
         this.description = ele.description;
         this.imageSource = ele.image;
+        this.news = ele.news;
         console.log('sss',this.imageSource);
         this.meta.addTag({ name: 'description', content: ele.description });
         this.meta.addTag({ name: 'image', content: `https://cinemakompany.com/${ele.image}` });
@@ -82,6 +84,8 @@ export class SingleNewsComponent implements OnInit {
         this.meta.updateTag({ property: 'og:title', content: ele.movieName });
         // console.log("updated", this.meta.getTag("'property=og:description'"))
       }
+    })
+
     })
 
     // this.data = NEWS.filter(ele => {
