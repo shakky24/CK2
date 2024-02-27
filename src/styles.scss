@@ -1,1 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    background-color: #161616;
+    color: #fff;
+  }
+
+  .card {
+    background-color: #444;
+    color: #fff;
+  }
+  
+html, body { height: 100%; font-family: 'Jost', sans-serif;}
+body { margin: 0; font-family: 'Jost', sans-serif; }
+
+
+.heading-with-stroke {
+  font-size: 130%;
+  padding: .1rem;
+  color: rgb(245, 237, 188);
+  line-height: 1.5rem;
+  text-shadow:
+    -2px -2px 0 black,
+     2px -2px 0 black,
+    -2px  2px 0 black,
+     2px  2px 0 black,
+
+}
+
+@media screen and (min-width :740px) {
+  .heading-with-stroke {
+    font-size: 200%;
+  }
+  .header-with-stroke {
+    font-size: 1.6rem !important;
+    padding:0 1rem !important;
+  }
+ 
+}
+
+
+.header-with-stroke {
+  font-size: 120%;
+  // padding: .1rem;
+  color: rgb(252, 252, 252);
+  line-height: 1.5rem;
+  text-shadow:
+    -2px -2px 0 black,
+     2px -2px 0 black,
+    -2px  2px 0 black,
+     2px  2px 0 black,
+
+}
