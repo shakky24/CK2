@@ -1,0 +1,149 @@
+<div class="main">
+
+    <div>
+        <div style="position: absolute;left: 2%;z-index: 999;top: 0%;">
+            <img height="35%" width="35%" src="assets/images/logo3.png" alt="Logo">
+        </div>
+        <div class="header">
+            <div class="menu-item">
+                <p class="menu-link" (mouseover)="showDropdown('home')" [class.selected]="activeDropdown === 'home'" (mouseleave)="hideDropdown()">Home</p>
+                <!-- <div *ngIf="activeDropdown === 'home'" class="dropdown-content">
+                    <p (click)="onItemClick('ott')">Now In OTT</p>
+                    <p>Now In Theatres</p>
+                    <p>Upcoming Movies</p>
+                </div> -->
+            </div>
+            <div class="menu-item">
+                <p  (click)="onReviewClick()" class="menu-link" [class.selected]="activeDropdown === 'reviews'" (mouseover)="showDropdown('reviews')" (mouseleave)="hideDropdown()">Reviews</p>
+                
+            </div>
+
+            <div class="menu-item">
+                <p  (click)="onNewsClick()" class="menu-link" [class.selected]="activeDropdown === 'reviews'" (mouseover)="showDropdown('reviews')" (mouseleave)="hideDropdown()">News</p>
+                
+            </div>
+            <div class="menu-item">
+                <p (click)="onAboutClick()" class="menu-link" (mouseover)="showDropdown('about')" (mouseleave)="hideDropdown()">About</p>
+                
+            </div>
+            <!-- <div class="menu-item">
+                <p class="menu-link" (mouseover)="showDropdown('contact')" (mouseleave)="hideDropdown()">Contact</p>
+                
+            </div> -->
+        </div>
+    </div>
+
+    <div class="carousel-container" [@slideAnimation]="currentIndex">
+        <div *ngFor="let slide of slides; let i = index" [ngClass]="{ 'active': i === currentIndex }"
+            class="carousel-slide" (touchstart)="onTouchStart($event)">
+            <!-- <div style="display: grid; grid-template-rows: min-content auto;"> -->
+
+            <!-- <div
+                    style="display: grid; grid-auto-flow: column; grid-auto-columns: min-content; justify-content: center;background-color: red; "> -->
+
+
+            <div class="gradient-overlay">
+                <img class="image" src="https://cinemakompany.com/{{slide.image}}" alt="Slide {{ slide.id }}">
+                <div class="gradient"></div>
+            </div>
+
+
+
+
+            <div>
+                <div [@textAnimation]="animationState" class="text">
+
+                    <div class="textCntainer">
+                        <div style="display: grid;">
+
+
+                            <!-- <p class="" [@textAnimation]="animationState">Best of 2023</p> -->
+                            <p class="movieName" [@textAnimation]="animationState">{{slide.movieName}}</p>
+                            <p class="movieTag" [@textAnimation]="animationState">{{slide.movieTag}}</p>
+                            <div
+                                style="display: grid;grid-template-columns: min-content min-content;column-gap: .5rem;margin: 1rem;">
+                                <img class="imdbText" [@overlayAnimation]="animationState" src="assets/images/imdb.png"
+                                    alt="Google Play Store">
+                                <p style="display: grid;align-items: center;">{{slide.imdb}}</p>
+
+
+                            </div>
+
+                            <!-- <p class="movieTag" [@textAnimation]="animationState">{{slide.subDescription}}</p> -->
+                            <p class="movieTag">{{slide.subDescription}}
+                            </p>
+
+
+
+                        </div>
+                        <div style="display: grid;">
+
+
+
+
+                            <div [@textAnimation]="animationState" class="movie-info">
+                                <div class="info-label">Cast :</div>
+                                <div class="info-value">{{slide.cast}}</div>
+                                <div class="info-label">Director :</div>
+                                <div class="info-value">{{slide.director}}</div>
+                                <div class="info-label">Genre :</div>
+                                <div class="info-value">{{slide.genre}}</div>
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+                </div>
+
+                <!-- <div class="gradient-overlay"> -->
+                <!-- <div class="gradient"></div> -->
+                <img class="thumbnailImage" [@overlayAnimation]="animationState" src="https://cinemakompany.com/{{slide.image}}"
+                    alt="Slide {{ slide.id }}">
+                <!-- </div> -->
+
+
+
+
+
+                <div class="playIcon">
+                    <!-- <div class='container'> -->
+                    <a [@overlayAnimation]="animationState" href="{{slide.videoUrl}}" class="playBut">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="80.7px"
+                            height="80.7px" viewBox="0 0 213.7 213.7" enable-background="new 0 0 213.7 213.7"
+                            xml:space="preserve">
+
+                            <polygon class='triangle' id="XMLID_18_" fill="none" stroke-width="7" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-miterlimit="10" points="
+                                  73.5,62.5 148.5,105.8 73.5,149.1 " />
+
+                            <circle class='circle' id="XMLID_17_" fill="none" stroke-width="7" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-miterlimit="10" cx="106.8" cy="106.8" r="103.3" />
+                        </svg>
+
+                    </a>
+                </div>
+            </div>
+            <!-- </div>
+
+            </div> -->
+        </div>
+
+    </div>
+
+    <div class="dot-indicators">
+        <span *ngFor="let slide of slides; let i = index" [ngClass]="{ 'active': i === currentIndex }"
+            (click)="goToSlide(i)"></span>
+    </div>
+
+
+    <mat-icon (click)="clickNextSlide()" class="arrowButtonsRight">arrow_forward_ios</mat-icon>
+    <mat-icon (click)="previousSlide()" class="arrowButtonsLeft">arrow_back_ios</mat-icon>
+</div>

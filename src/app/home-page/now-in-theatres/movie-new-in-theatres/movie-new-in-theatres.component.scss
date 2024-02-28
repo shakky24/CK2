@@ -1,0 +1,37 @@
+.container {
+    display: grid;
+    place-items: center; /* Center content both horizontally and vertically */
+    grid-template-rows: 2fr auto; /* 75% top, remaining bottom */
+    margin: 3rem;
+    min-height: 100vh; /* Ensure the container takes up at least the full viewport height */
+  }
+  .top-section{
+    display: grid;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .top-section img {
+    max-width: 90%;
+    height: 90%;
+  }
+  
+  .top-section p {
+    font-size: 18px; /* Adjust as needed */
+  }
+  
+  @media (max-width: 768px) {
+    .top-section p {
+      font-size: 16px;
+    }
+    .top-section img {
+        max-width: 100%;
+        height: auto;
+      }
+    
+  }
+  
+  .bottom-section {
+    grid-row: 2 / 3;
+  }
+  

@@ -11,23 +11,23 @@ export class MovieService {
   getMoviesData(): Observable<any[]> {
     // return assets/images/NowinTheatres/now_in_theatres.json
     // return this.http.get<any[]>('assets/images/NowinTheatres/now_in_theatres.json');
-    return this.http.get<any[]>('https://jsonplaceholder.typicode.com/todos/1');
+    return this.http.get<any[]>('https://cinemakompany.com/assets/images/NowinTheatres/now_in_theatres.json');
   }
 
   getMoviesDataFromForthcomingReleases(): Observable<any[]> {
     // return this.http.get<any[]>('assets/images/ForthcomingReleases/ForthcomingReleases.json');
-    return this.http.get<any[]>('https://jsonplaceholder.typicode.com/todos/1');
+    return this.http.get<any[]>('https://cinemakompany.com/assets/images/ForthcomingReleases/ForthcomingReleases.json');
 
   }
 
   getMoviesDataFromHomeCarousel(): Observable<any[]> {
     // return this.http.get<any[]>('assets/images/home-carousel/Home_Carousel.json');
-    return this.http.get<any[]>('https://jsonplaceholder.typicode.com/todos/1');
+    return this.http.get<any[]>('https://cinemakompany.com/assets/images/home-carousel/Home_Carousel.json');
 
   }
   getMoviesDataFromAdvertisement(): Observable<any[]> {
     // return this.http.get<any[]>('assets/images/advertisement/advertisement.json');
-    return this.http.get<any[]>('https://jsonplaceholder.typicode.com/todos/1');
+    return this.http.get<any[]>('https://cinemakompany.com/assets/images/advertisement/advertisement.json');
 
   }
 
@@ -45,7 +45,7 @@ export class MovieService {
 
   getMovieFromNowInOtt(): Observable<any[]> {
     // return this.http.get<any[]>('assets/images/NowinOTT/Now_in_Ott.json');
-    return this.http.get<any[]>('https://jsonplaceholder.typicode.com/todos/1');
+    return this.http.get<any[]>('https://cinemakompany.com/assets/images/NowinOTT/Now_in_Ott.json');
 
   }
 }

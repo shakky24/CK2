@@ -1,0 +1,133 @@
+.carousel-container {
+  // width: 95%;
+  overflow-x: scroll;
+  // padding: 0 0 60px 0;
+  margin: 0 1rem;
+  
+
+  
+}
+
+.carousel {
+  display: flex;
+  width: fit-content;
+}
+
+.carousel-slide {
+  flex: 0 0 50%;
+  height: auto;
+  // min-height: 18rem;
+  max-width: 30rem; /* Limit the maximum width if needed */
+  // margin-right: 1rem;
+  // border: 3px solid black;
+  
+}
+
+
+.play-icon {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+  background-color:#b81d24; /* Background color for the play button */
+  border-radius: 50%; /* Makes the background perfectly round */
+  width: 3rem; /* Set the width and height to control the size of the round background */
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.play-icon mat-icon {
+  color: white; /* Icon color */
+}
+
+.carousel-slide:hover .play-icon {
+  visibility: visible;
+}
+
+
+.carousel-slide:last-child {
+  margin-right: 0;
+}
+.carousel-slide:hover {
+  transform: scale(1.07); /* Adjust the scale factor to control the zoom level */
+  transition: transform 0.3s ease; /* Add a smooth transition effect */
+}
+.moreVideos {
+  display: grid;
+  justify-content: end;
+  margin-right: .5rem !important;
+}
+
+
+.star-rating {
+  display: flex;
+  padding: .8rem
+}
+
+.star {
+  font-size: 1.5rem;
+  color: #ffffff; /* default star color */
+}
+
+.star.filled {
+  color: #ffd700; /* filled star color */
+}
+
+
+.carousel-slide img {
+  width: 98% !important;
+  height: 85% !important;
+  object-fit: cover;
+  // border: 1px solid rgb(79, 79, 79);
+}
+
+@media screen and (min-width :740px) {
+  .carousel-slide {
+    flex: 0 0 20%;
+    height: auto;
+    filter: brightness(80%) !important;
+    padding: 0 0 3rem 0;
+
+    // min-height: 40rem;
+  }
+
+
+  .moreVideos{
+    margin-right: 2rem !important;
+  }
+  .carousel-slide img {
+    display: grid;
+    justify-content: center;
+    width: 99% !important;
+    height: 80% !important;
+    justify-content: center !important;
+    object-fit: cover;
+    
+    // border: 1px solid rgb(79, 79, 79);
+  }
+  
+}
+
+// .image {
+//   height: 10rem;
+//   width: 2rem;
+// }
+/* Hide the horizontal scrollbar */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Optional: Style the track (the area behind the thumb) */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Optional: Style the thumb (the draggable part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+

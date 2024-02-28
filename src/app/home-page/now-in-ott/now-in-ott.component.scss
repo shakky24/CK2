@@ -1,0 +1,130 @@
+.main {
+  display: flex;
+  overflow-x: auto;
+  padding: 0px 0px 60px 0px;
+  margin: 0 .4rem 0 .4rem;
+
+  // gap: 1rem;
+}
+
+
+.play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+  background-color:#b81d24; /* Background color for the play button */
+  border-radius: 50%; /* Makes the background perfectly round */
+  width: 3rem; /* Set the width and height to control the size of the round background */
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.play-icon mat-icon {
+  color: white; /* Icon color */
+}
+
+.carousel-slide:hover .play-icon {
+  visibility: visible;
+}
+
+.moreVideos {
+  display: grid;
+  justify-content: end;
+  margin-right: .2rem !important;
+}
+
+.heading {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 1rem;
+}
+
+.carousel-slide {
+  flex: 0 0 auto;
+  display: grid;
+  width: calc(100% / 2) !important;
+  height: 100%;
+  // width: au;
+
+}
+
+.carousel-slide:hover {
+  transform: scale(1.05); /* Adjust the scale factor to control the zoom level */
+  transition: transform 0.3s ease; /* Add a smooth transition effect */
+}
+
+.slide-content {
+  display: grid;
+  position: relative;
+  padding-bottom: 125%; /* Adjust the padding-bottom value to control the height of the card */
+  margin: 0 .3rem;
+}
+
+.slide-content img {
+  display: grid;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Set the width to 100% to take the full width of the card */
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(70%);
+}
+
+
+
+@media screen and (min-width :650px) {
+  .main {
+    margin: 0 1rem !important;
+
+
+  }
+  .moreVideos{
+    margin-right: 2rem !important;
+  }
+
+  .heading {
+    margin: 1rem;
+  }
+
+  .carousel-slide {
+    flex: 0 0 auto;
+    width: calc(100% / 5) !important;
+    // height: 60%;
+    width: 100%;
+  }
+}
+
+/* Hide the horizontal scrollbar */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Optional: Style the track (the area behind the thumb) */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Optional: Style the thumb (the draggable part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+.star-rating {
+  display: flex;
+  padding: .8rem
+}
+
+.star {
+  font-size: 1.5rem;
+  color: #ffffff; /* default star color */
+}
+
+.star.filled {
+  color: #ffd700; /* filled star color */
+}

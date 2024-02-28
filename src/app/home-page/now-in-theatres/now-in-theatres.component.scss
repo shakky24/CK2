@@ -1,0 +1,142 @@
+.main {
+  display: flex;
+  overflow-y: hidden;
+  margin: 0 .4rem;
+
+}
+
+.carousel-slide {
+  flex: 0 0 auto;
+  width: calc(100% / 2);
+  height: 100%;
+  // width: 80%;
+
+}
+/* Apply a blur effect to the overlay when the dialog is open */
+.mat-dialog-container::ng-deep .cdk-overlay-container {
+  position: relative;
+
+  &.dialog-open {
+    filter: blur(5px); /* Adjust the blur amount as needed */
+    pointer-events: none; /* Allow interaction with the underlying content */
+  }
+}
+
+/* Reset the blur effect for the dialog content */
+.mat-dialog-container::ng-deep .mat-dialog-container {
+  filter: none;
+  pointer-events: auto; /* Restore normal interaction with the dialog content */
+}
+
+
+
+
+
+.carousel-slide:hover {
+  transform: scale(1.10);
+  /* Adjust the scale factor to control the zoom level */
+  transition: transform 0.3s ease;
+  /* Add a smooth transition effect */
+}
+
+
+
+.slide-content {
+  display: grid;
+  position: relative;
+  padding-bottom: 125%;
+  margin: 0 .3rem;
+}
+
+.slide-content img {
+  display: grid;
+  // border:.6px solid rgb(79, 79, 79);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: brightness(70%);
+  object-fit: cover;
+  overflow-y: hidden;
+  overflow-x: auto;
+  // border: 3px solid rgb(192, 192, 192,0.5);
+
+}
+
+.moreVideos {
+  display: grid;
+  justify-content: end;
+  margin-right: .2rem !important;
+}
+
+.play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+  background-color:#b81d24; /* Background color for the play button */
+  border-radius: 50%; /* Makes the background perfectly round */
+  width: 3rem; /* Set the width and height to control the size of the round background */
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.play-icon mat-icon {
+  color: white; /* Icon color */
+}
+
+.carousel-slide:hover .play-icon {
+  visibility: visible;
+}
+
+
+
+@media screen and (min-width :650px) {
+  .carousel-slide {
+    flex: 0 0 auto;
+    width: calc(100% / 5) !important;
+    height: 60% !important;
+    width: 25%;
+  }
+  .moreVideos{
+    margin-right: 2rem !important;
+  }
+
+  .main {
+    margin: 0 1rem;
+  }
+}
+
+.star-rating {
+  display: flex;
+  padding: .6rem
+}
+
+.star {
+  font-size: 1.5rem;
+  color: #ffffff; /* default star color */
+}
+
+.star.filled {
+  color: #ffd700; /* filled star color */
+}
+
+/* Hide the horizontal scrollbar */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Optional: Style the track (the area behind the thumb) */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Optional: Style the thumb (the draggable part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}

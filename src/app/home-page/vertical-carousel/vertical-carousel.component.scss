@@ -1,0 +1,183 @@
+// // .vertical-carousel {
+// //     display: flex;
+// //     flex-direction: column;
+// //     align-items: center;
+// //   }
+  
+// //   .carousel-container {
+// //     overflow: hidden;
+// //     height: 30vh; /* Set the desired height of your carousel */
+// //     width: 50%;
+ 
+// //   }
+  
+// //   .carousel-wrapper {
+// //     display: flex;
+// //     flex-direction: column;
+// //     transition: transform 0.3s ease-in-out;
+// //     gap: .5rem;
+// //   }
+  
+// //   .carousel-slide {
+// //     display: flex;
+// //     justify-content: center;
+// //     align-items: center;
+// //     width: 100%;
+// //     height: 100%;
+// //   }
+  
+// //   img {
+// //     width: 60%;
+// //     height: auto;
+// //   }
+  
+// //   button {
+// //     margin: 10px;
+// //   }
+// .carousel {
+//   display: grid;
+//   grid-template-rows: .1fr auto .1fr;
+//   flex-direction: column;
+//   align-items: center;
+//   opacity: 1;
+//   // width: 40%; /* Adjust the width as needed */
+//   overflow: hidden;
+//   position: relative;
+//   transition: transform 0.5s ease;
+// }
+.backgroundIm {
+  // position: absolute;
+  opacity: 0.2;
+  // top: 0;
+  left: 0;
+  // width: 100%;
+  // height: 100%;
+  background-size: cover;
+  background-position:end;
+  background-repeat: no-repeat;
+  z-index: -1; /* Ensure it's behind other content */
+}
+
+
+
+
+// .carousel-items {
+//   display: grid;
+//   grid-template-rows: repeat(auto, 1fr);
+  
+//   gap: 10px;
+//   height: 200px; /* Adjust the height as needed */
+//   overflow: auto;
+//   background-size: cover;
+//   background-position: center;
+//   background-repeat: no-repeat;
+// }
+
+// // .carousel-item {
+// //   display: grid;
+// //   flex-direction: column;
+// //   align-items: center;
+// //   justify-content: center;
+// //   border: 1px solid #ccc;
+// //   background-size: cover;
+// //   background-position: center center;
+// //   background-repeat: no-repeat;
+// //   // height: auto;
+// //   // width: 99%;
+// //   transform: scale(1);
+// // }
+
+// .center {
+//   transform: scale(1.1); /* Zoom in on the center item */
+//   z-index: 1; /* Ensure center item is on top */
+// }
+
+// .top {
+//   opacity: 0.7;
+//   z-index: -1;
+// }
+
+// .bottom {
+//   opacity: 0.7;
+//   z-index: -1;
+// }
+
+// .prev-button,
+// .next-button {
+//   width: 50px;
+//   height: 30px;
+//   background-color: #333;
+//   color: #fff;
+//   border: none;
+//   cursor: pointer;
+// }
+
+// .prev-button {
+//   align-self: flex-start;
+// }
+
+// .next-button {
+//   align-self: flex-end;
+// }
+// img{
+//   display: grid;
+//   justify-content: center;
+//   height: auto;
+//   width: 100%;
+//   overflow: hidden;
+//   // padding: .2rem;
+//   // margin: .5rem;
+// }
+
+// div[style*=" top: 0; right: 0;"] p {
+//   display: grid;
+//   background-color: #333;
+//   color: #fff;
+//   cursor: pointer;
+//   justify-content: center;
+//   width: 50px; /* Width of the Previous button */
+//   text-align: center;
+//   margin: 0;
+//   padding: .5rem .3rem; /* Adjust padding as needed */
+  
+// }
+
+// /* Style for the Next button */
+// div[style*=" bottom: 0; right: 0;"] p {
+//   background-color: #333;
+//   color: #fff;
+//   cursor: pointer;
+//   width: 50px; /* Width of the Next button */
+//   text-align: center;
+//   margin: 0;
+//   padding: .5rem .5rem; /* Adjust padding as needed */
+// }
+.manual-carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  // height: ;
+}
+
+.slide-content {
+  display: grid;
+  width: 30%;
+  justify-content: end;
+  position: relative;
+  // padding-bottom: 55%;
+  margin: 0 .3rem;
+}
+
+
+.manual-carousel img {
+  max-width: 100%;
+  max-height: 300px; /* Set the desired height */
+}
+
+.manual-carousel button {
+  margin: 0 10px;
+  padding: 5px 10px;
+}
+

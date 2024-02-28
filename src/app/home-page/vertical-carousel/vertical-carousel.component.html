@@ -1,0 +1,92 @@
+<!-- <div class="vertical-carousel">
+    <button (click)="prevSlide()">Previous</button>
+    <div class="carousel-container" #carouselWrapper>
+      <div class="carousel-wrapper" [style.transform]="'translateY(' + translateY + 'px)'">
+        <div *ngFor="let item of carouselItems; let i = index" class="carousel-slide">
+          <img [src]="item?.imageURL" alt="Slide {{ i + 1 }}" />
+        </div>
+      </div>
+    </div>
+    <button (click)="nextSlide()">Next</button>
+  </div> -->
+
+<!-- vertical-carousel.component.html -->
+<!-- <div style="position: relative;">
+
+
+
+
+  <div style="display: grid;grid-template-columns: .8fr 1fr;">
+    <div class="background" [style.background-image]="'url(' + selectedItemBackground + ')'"></div>
+
+    <div class="carousel">
+      <div style="position: absolute; top: 0; right: 0;z-index: 120;display: grid;width: 100%;justify-content: center;">
+        <p (click)="prevItem()">Previous</p>
+      </div>
+
+
+
+
+      <div class="carousel-items">
+        <div class="carousel-item" *ngFor="let item of items; let i = index"
+          [ngClass]="{ 'center': i === selectedIndex, 'top': i < selectedIndex, 'bottom': i > selectedIndex }">
+          <div id="moveWithId" class="carousel-content">
+          
+            <img [src]="item.imageURL" alt="{{ item.title }}" />
+          </div>
+        </div>
+      </div>
+      <div style="position: absolute; bottom: 0; right: 0;z-index: 120;display: grid;width: 100%;justify-content: center;">
+        <p (click)="nextItem()">Next</p>
+      </div>
+    </div>
+    
+  </div>
+
+
+
+  
+
+</div> -->
+
+
+<!-- <div class="carousel-container">
+  <div class="carousel">
+    <div *ngFor="let item of items; let i = index">
+      <img class="image" *ngIf="item.imageURL" [src]="item.imageURL" alt="Slide {{i + 1}}">
+      <p style="display: grid;text-align: center;margin: 0;">{{ item?.title }}</p>
+      <p>{{ item?.subDiscription }}</p>
+    </div>
+
+  </div>
+</div> -->
+
+
+<!-- <div  class="carousel-slide" *ngFor="let movie of items; let i = index">
+  <div class="slide-content">
+    <img *ngIf="movie.imageURL" [src]="movie.imageURL" alt="Slide {{i + 1}}">
+  </div>
+  <p style="display: grid;text-align: center;margin: 0;">{{ movie?.title }}</p>
+  <p>{{ movie?.subDiscription }}</p>
+</div> -->
+<div class="backgroundIm" [style.background-image]="'url(' + selectedItemBackground + ')'"></div>
+
+<div
+  style="display: grid;grid-template-rows: .1fr 1fr .1fr;;row-gap: .4rem;position: relative;">
+  <div style="display: grid;">
+    <button (click)="showPreviousItems()">Previous</button>
+
+  </div>
+
+  <div class="manual-carousel" [style.backgroundImage]="'url(' + selectedItemBackground + ')'">
+
+    <div *ngFor="let item of items.slice(currentIndex, endIndex + 1)" class="slide-content">
+      <img [src]="item.imageURL" alt="Carousel Image">
+    </div>
+  </div>
+
+  <div style="display: grid;">
+    <button (click)="showNextItems()">Next</button>
+
+  </div>
+</div>

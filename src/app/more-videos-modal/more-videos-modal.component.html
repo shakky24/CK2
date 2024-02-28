@@ -1,0 +1,20 @@
+
+<div style="display: grid;justify-content: end;"  (click)="onClose()">
+  <button style="display: grid;">
+    <mat-icon style="color: black;">close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content>
+  <div (click)="clickOnMovieCard(movie)" class="movie-card" *ngFor="let movie of data.movies">
+    <img class="image" *ngIf="movie.imageURL" src="https://cinemakompany.com/{{movie.imageURL}}" alt="{{ movie.title }}">
+    <div class="card-content">
+      <h3>{{ movie.title }}</h3>
+      <p>{{ movie.subDiscription }}</p>
+      <p>Duration: {{ movie.duration }}</p>
+      <p>Type: {{ movie.type }}</p>
+    </div>
+  </div>
+</div>
+<div  style="display: grid;color: black;padding: .5rem;">
+  <button style="height: 2rem;"  (click)="onClose()">Close</button>
+</div>

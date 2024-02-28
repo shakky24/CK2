@@ -1,0 +1,68 @@
+<!-- <div class="background-image">
+    <div class="youtube-video">
+        <div style="height: 100%; width: 100%;" class="thumbnail">
+            <a href="https://www.youtube.com/embed/TWQjWLwY9ZE" target="_blank">
+                <img  style="max-width: 100%; max-height: 100%;" src="assets/images/NowinTheatres/VOS.jpg" alt="Video Thumbnail">
+            </a>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="carousel-container">
+    <div class="carousel-wrapper" [style.transform]="'translateX(' + slideOffset + '%)'">
+        <div *ngFor="let slide of slides; let i = index" class="carousel-slide">
+            <div class="background-image" [style.background-image]="'url(' + slide.backgroundUrl + ')'"></div>
+            <!-- <img class="center-image" [src]="slide.writings" alt="Center Image"> -->
+            
+
+            <div class="thumbnail">
+                <a href="{{ slide.videoUrl }}" target="_blank">
+                    <img [src]="slide.thumbnailUrl" alt="Video Thumbnail">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <div class="carousel-container">
+    <div class="carousel-wrapper" [style.transform]="'translateX(' + slideOffset + '%)'">
+      <div *ngFor="let slide of slides; let i = index" class="carousel-slide">
+        <div class="background-image" [style.background-image]="'url(' + slide.backgroundUrl + ')'"></div>
+        <div class="thumbnail">
+          <a href="{{ slide.videoUrl }}" target="_blank">
+            <img [src]="slide.thumbnailUrl" alt="Video Thumbnail">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+<!-- <div class="carousel-container">
+    <div class="carousel-wrapper" [style.transform]="'translateX(' + slideOffset + '%)'">
+        <div *ngFor="let slide of slides; let i = index" class="carousel-slide">
+            <div class="background-image" [style.background-image]="'url(' + slide.backgroundUrl + ')'">
+                <div class="thumbnail">
+
+                    <a href="{{ slide.videoUrl }}" target="_blank">
+                        <img [src]="slide.thumbnailUrl" alt="Video Thumbnail">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+
+<!-- <div class="background-image">
+    <div class="youtube-video">
+        <div style="height: 100%; width: 100%;" id="youtube-player" class="thumbnail">
+        </div>
+    </div>
+</div> -->

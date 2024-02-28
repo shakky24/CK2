@@ -1,0 +1,264 @@
+.main {
+
+  display: grid;
+  // height: 45rem;
+  position: relative;
+  margin: .4rem;
+}
+
+
+.gradient-overlay {
+  position: relative;
+  display: inline-block;
+  /* or block, depending on your layout */
+  width: 100%;
+  /* Adjust the width as needed */
+  height: 100%;
+  /* Adjust the height as needed */
+}
+
+.gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  // filter: brightness(80%);
+  // background: linear-gradient(to right, rgba(11, 16, 23, .8) 0%, rgba(11, 16, 23, 0.60) 100%);
+  background: linear-gradient(to left, rgba(11, 16, 23, .4) 0%, rgba(11, 16, 23, 0.1) 100%) !important;
+
+
+  // opacity: 0.7;
+  // animation: moveGradient 5s linear infinite, rotateGradient 5s linear infinite;
+  // background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent); /* Adjust gradient colors and direction */
+}
+
+.arrowButtonsLeft {
+  position: absolute;
+  top: 40%;
+  left: 1%;
+  opacity: .6;
+  z-index: 3;
+  height: 1rem;
+  width: 1rem;
+  font-size: 1rem;
+}
+
+.arrowButtonsRight {
+  position: absolute;
+  opacity: .5;
+  top: 40%;
+  right: 0;
+  z-index: 3;
+  height: 1rem;
+  width: 1rem;
+  font-size: 1rem;
+}
+
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  justify-items: center;
+  justify-content: center;
+  // margin: 3rem;
+  // overflow-y: auto;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  // transition: transform 0.5s ease-in-out;
+}
+
+
+.carousel-slide:not(.active) {
+  position: absolute;
+  top: 0;
+  left: 100%;
+}
+
+
+@media screen and (min-width :740px) {
+
+
+
+  .main {
+
+    display: grid;
+    height: 100% !important;
+    position: relative;
+    // margin: .4rem;
+  }
+
+  .arrowButtonsLeft {
+
+    height: 2.5rem;
+    width: 2.5rem;
+    font-size: 2.5rem;
+  }
+
+  .arrowButtonsRight {
+
+    height: 2.5rem;
+    width: 2.5rem;
+    font-size: 2.5rem;
+  }
+
+
+
+
+}
+
+
+.headerNames {
+  display: none;
+
+}
+
+.image {
+  // position: relative;
+  height: 100%;
+  width: 100%;
+  // opacity: .2;
+}
+
+
+.dot-indicators {
+  display: flex;
+  justify-content: center;
+  // padding: 1rem;
+}
+
+.dot-indicators span {
+  width: .4rem;
+  height: .4rem;
+  border-radius: 50%;
+  position: relative;
+  top: 50%;
+  // left: 50%;
+  z-index: 200;
+  margin-right: 0.5rem;
+  border: 1px solid #999999;
+  cursor: pointer;
+  display: grid;
+  transition: transform 0.2s ease-in-out;
+}
+
+.dot-indicators span.active {
+  background-color: rgb(255, 208, 0);
+
+}
+
+.dot-indicators span:hover {
+  transform: scale(1.2);
+}
+
+
+
+
+.circle {
+  stroke: #ffffff;
+  stroke-dasharray: 750;
+  stroke-dashoffset: 750;
+  -webkit-transition: all 0.5s ease-in-out;
+  opacity: 0.3;
+}
+
+.vertical-carousel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.vertical-carousel-slide {
+  flex: 0 0 10%;
+  // transition: transform 0.5s ease-in-out;
+}
+
+.vertical-carousel-slide:not(.active) {
+  position: absolute;
+  top: 0;
+  left: 100%;
+}
+
+.vertical-carousel-image {
+  height: 100%;
+  width: 100%;
+}
+
+.vertical-carousel-slide.active {
+  transform: translateY(0);
+}
+
+
+.main {
+  position: relative;
+}
+
+.center-display {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  height: 45%;
+  top: 22%;
+  left: 0;
+  right: 1%;
+  bottom: 0;
+  overflow: hidden;
+  // padding: .8rem 0;
+}
+
+.previous-image,
+// .current-image,
+.next-image {
+  max-height: 28%;
+  width: 20%;
+  transform: scale(.8);
+  padding: .2rem 0;
+  z-index: 99;
+
+}
+
+.current-image {
+  // border: 2px solid white;
+  max-height: 35%;
+  width: 20%;
+  transform: scale(1.1);
+  opacity: .65;
+}
+
+.previous-image,
+.next-image {
+  opacity: .55 ;
+  // border: 2px solid white;
+
+}
+
+.previous-image,
+.next-image,
+.center-image {
+  position: absolute;
+}
+
+.bottom-button {
+  background-color: transparent;
+  border: none;
+}
+
+.top-button {
+  background-color: transparent;
+  border: none;
+}
+
+.previous-image {
+  bottom: 72%;
+}
+
+.next-image {
+  top: 72%;
+}

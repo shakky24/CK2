@@ -1,0 +1,9 @@
+<div class="top-section">
+    <img style="justify-self: center;" [src]="imageSource" alt="Image">
+    <p>{{title}}</p>
+    <p>{{ description | slice:0:descriptionLimit }}</p>
+    <button *ngIf="description.length > descriptionLimit" (click)="showFullDescription()">Read More</button>
+</div>
+<div class="bottom-section">
+
+</div>
