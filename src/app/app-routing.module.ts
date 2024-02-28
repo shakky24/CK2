@@ -11,7 +11,7 @@ export const routes: Routes = [
   { path: 'page1', component: Page1Component },
   { path: 'page2', component: Page2Component },
   { path: 'news', component: NewsComponent },
-  { path: '', component: HomePageComponent },
+  { path: 'home-page', component: HomePageComponent },
   { path: 'news/:movie_id', component: SingleNewsComponent },
   {path: 'about', component:AboutComponent}
 ];
