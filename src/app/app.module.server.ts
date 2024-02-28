@@ -9,6 +9,7 @@ import { SplitParagraphPipe } from './pipes/split-paragraph.pipe';
   imports: [
     AppModule,
     ServerModule,
+    
   ],
   bootstrap: [AppComponent],
   declarations:[SplitParagraphPipe],

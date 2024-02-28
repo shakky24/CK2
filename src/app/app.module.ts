@@ -3,6 +3,7 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LayoutComponent } from './layout/layout.component';
 import { NewsComponent } from './news/news.component';
 import { SingleNewsComponent } from './news/single-news/single-news.component';
 
@@ -10,7 +11,8 @@ import { SingleNewsComponent } from './news/single-news/single-news.component';
   declarations: [
     AppComponent,
     SingleNewsComponent,
-    NewsComponent
+    NewsComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
