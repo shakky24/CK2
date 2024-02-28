@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, HostListener } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MovieService } from 'src/app/services/movies.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { MovieService } from 'src/app/services/movies.service';
   templateUrl: './image-carousel.component.html',
   styleUrls: ['./image-carousel.component.scss'],
   standalone:true,
-  imports:[CommonModule, MatIconModule, HttpClientModule],
+  imports:[CommonModule, MatIconModule, HttpClientModule, BrowserAnimationsModule],
   providers:[MovieService ],
   animations: [
     trigger('slideAnimation', [
