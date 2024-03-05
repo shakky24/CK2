@@ -1,38 +1,19 @@
-import { animate, query, stagger, state, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, HostListener } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedDataService } from 'src/app/services/SharedDataService';
 import { MovieService } from 'src/app/services/movies.service';
 
 @Component({
   selector: 'app-image-carousel',
   templateUrl: './image-carousel.component.html',
   styleUrls: ['./image-carousel.component.scss'],
-  standalone:true,
-  imports:[CommonModule, MatIconModule, HttpClientModule, BrowserAnimationsModule],
-  providers:[MovieService ],
-  animations: [
-    trigger('slideAnimation', [
-      transition('* <=> *', [
-        query('.carousel-slide', style({ transform: 'translateX(80%)', opacity: 0 })),
-        query('.carousel-slide', stagger('0ms', [
-          animate('.5s ease-in-out', style({ transform: 'translateX(0)', opacity: 1 }))
-        ]))
-      ])
-    ]),
-    trigger('textAnimation', [
-      state('hidden', style({ opacity: 0, transform: 'translateX(-80px)' })),
-      state('visible', style({ opacity: 1, transform: 'translateX(0)' })),
-      transition('hidden => visible', animate('400ms')),
-    ]),
-    trigger('overlayAnimation', [
-      state('hidden', style({ opacity: 0, transform: 'translateX(-100px)' })),
-      state('visible', style({ opacity: 1, transform: 'translateX(0)' })),
-      transition('hidden => visible', animate('400ms 800ms')), // Delay the overlay animation by 1 second
-    ]),
-  ]
+  standalone: true,
+  imports: [CommonModule, MatIconModule, HttpClientModule],
+  providers: [MovieService, SharedDataService],
+
+
   // animations: [
   //   trigger('imageTransition', [
   //     state('center', style({
@@ -71,6 +52,9 @@ export class ImageCarouselComponent {
     { id: 1, image: 'assets/images/NowinTheatres/2018.jpg' }
   ];; // Array to store the carousel slides
 
+  currentImage: any = '';
+
+
   // currentIndex: number = 0;
   // state: string = 'center';
   // backgroundImagePath: any;
@@ -84,19 +68,30 @@ export class ImageCarouselComponent {
   private touchStartX: number = 0;
   private isTouchSlide: boolean = false;
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService) {
+
+
+    this.movieService.getMoviesDataFromAdvertisement().subscribe((ele: any[]) => {
+      ele.sort((a, b) => a.id - b.id);
+      console.log(ele);
+      this.slides = ele;
+      console.log(this.slides)
+      this.currentImage = "https://cinemakompany.com/" + this.slides[this.currentIndex].image;
+      console.log(this.currentImage)
+    });
+  }
 
   ngOnInit(): void {
+
+    console.log("loading component")
     setTimeout(() => {
       this.animationState = 'visible';
     }, 100); // Wait for 100ms before starting the animation
 
-    this.movieService.getMoviesDataFromAdvertisement().subscribe((data: any[]) => {
-      data.sort((a, b) => a.id - b.id);
-      this.slides = data;
-    });
 
-    this.startSlideShow()
+    // this.startSlideShow()
+    console.log("component loaded")
+
 
   }
 
@@ -186,29 +181,40 @@ export class ImageCarouselComponent {
     this.currentIndex = index;
   }
 
+  ngOnChanges(){
+    console.log("changes")
+    this.currentImage = "https://cinemakompany.com/" + this.slides[this.currentIndex].image;
+    console.log(this.currentImage)
+  }
+
 
   getCurrentImage(): string {
+    console.log("this.slides", this.slides, this.currentIndex, "https://cinemakompany.com/" + this.slides[this.currentIndex].image)
     return "https://cinemakompany.com/" + this.slides[this.currentIndex].image;
   }
 
   getNextImage(): string {
+    console.log("this.slides", this.slides)
+
     const nextIndex = (this.currentIndex + 1) % this.slides.length;
     return "https://cinemakompany.com/" + this.slides[nextIndex].image;
   }
 
   getPreviousImage(): string {
+    console.log("this.slides", this.slides)
+
     const previousIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
     return "https://cinemakompany.com/" + this.slides[previousIndex].image;
   }
 
   handleTopButtonClick(): void {
     this.stopSlideShow()
-    
+
     this.currentIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
     // Add logic for top button click
     this.startSlideShow()
   }
-  
+
   handleBottomButtonClick(): void {
     this.stopSlideShow()
     // Move to the next image

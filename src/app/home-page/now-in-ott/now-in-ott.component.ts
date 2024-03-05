@@ -12,33 +12,35 @@ import { MoreVideosModalComponent } from '../../more-videos-modal/more-videos-mo
   selector: 'app-now-in-ott',
   templateUrl: './now-in-ott.component.html',
   styleUrls: ['./now-in-ott.component.scss'],
-  standalone:true,
-  imports:[CommonModule, MatIconModule, HttpClientModule],
-  providers:[MovieService, SharedDataService ],
+  standalone: true,
+  imports: [CommonModule, MatIconModule, HttpClientModule],
+  providers: [MovieService, SharedDataService],
 })
 export class NowInOttComponent {
   movies: any[] = [];
 
-  constructor( private movieService: MovieService,
+  constructor(private movieService: MovieService,
     private sharedDataService: SharedDataService,
     private readonly router: Router,
     private el: ElementRef,
-    public dialog: MatDialog) {}
-  ngOnInit() {
-    this.movieService.getMovieFromNowInOtt().subscribe((data: any[]) => {
-      data.sort((a, b) => a.id - b.id);
-      this.movies = data;
-
-
+    public dialog: MatDialog) {
+    this.movieService.getMovieFromNowInOtt().subscribe((ele: any[]) => {
+      ele.sort((a, b) => a.id - b.id);
+      this.movies = ele;
     });
   }
-  clickNowInTheatres(movie:any){
+
+  ngOnInit() {
+
+  }
+
+  clickNowInTheatres(movie: any) {
 
     this.sharedDataService.updateMovieData(movie);
 
-    this.router.navigate(['/home-page/now_in_theatre'],{ state: { data: movie } });
+    this.router.navigate(['/home-page/now_in_theatre'], { state: { data: movie } });
 
-    
+
   }
 
   getStars(rating: number): { filled: boolean }[] {
@@ -48,21 +50,21 @@ export class NowInOttComponent {
     }
     return stars;
   }
-  
+
 
 
 
   openMoreVideosModal() {
     const dialogRef = this.dialog.open(MoreVideosModalComponent, {
       height: '90%', // Adjust the width as per your design
-      width:'75%', // Adjust the width as per your design
+      width: '75%', // Adjust the width as per your design
       data: { movies: this.movies }
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
     });
   }
-  
+
 
 
 }

@@ -1,0 +1,31 @@
+
+
+<!-- <div (click)="goToHomePage()" style="display: grid;;text-align: center;margin:.5rem;"> -->
+  <div style="display: grid;justify-content: end;margin: .8rem;">
+        <header (click)="goToHomePage()" style="text-align: center;font-family: Jost;font-size: 1.5rem;cursor: pointer;;padding: .8rem;border-radius: 12px;display: grid; background-color: #333;justify-content: start;"><mat-icon>home</mat-icon></header>
+
+    </div>
+<!-- </div> -->
+<div class="image-grid">
+  <div (click)="clickOnReview(item)" *ngFor="let item of items" class="grid-item">
+    <img src="https://cinemakompany.com/{{item.image}}" alt="Image" class="image">
+    <p style="font-family: Jost;font-size: 2rem;font-weight: 700;padding: 1rem;line-height: 1.4;">{{ item?.movieName }}</p>
+    <p style="font-family: Jost;font-weight: 400;font-size: 1.2rem; word-wrap: break-word;overflow-wrap: break-word;line-height: 1.2;">{{ item?.description }}</p>
+   
+    <div class="star-rating">
+      <span class="star" [ngClass]="{'filled': i <= item.rating}" *ngFor="let i of [1, 2, 3, 4, 5]">&#9733;</span>
+    </div>
+    <ng-container >
+      <p class="description" >
+        {{ item.review | slice:0:reviewLength  }}
+
+        <!-- <p style="text-align: justify;">{{ paragraph | slice:0:reviewLength }}</p> -->
+      </p>
+      <!-- <p class="" style="color: rgb(238, 238, 159); font-size: 1.4rem; font-weight: bold;text-align: start;">
+       Verdict : {{ item?.verdict }}</p> -->
+      <a style="cursor: pointer;"  (click)="showFullReview(item)">Read More</a>
+    </ng-container>
+    <!-- <p class="description" *ngIf="item.showFullReview">{{ item.review }}</p> -->
+  </div>
+</div>
+

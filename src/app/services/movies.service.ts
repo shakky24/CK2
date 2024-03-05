@@ -25,7 +25,9 @@ export class MovieService {
     return this.http.get<any[]>('https://cinemakompany.com/assets/images/home-carousel/Home_Carousel.json');
 
   }
+  
   getMoviesDataFromAdvertisement(): Observable<any[]> {
+    console.log("Called")
     // return this.http.get<any[]>('assets/images/advertisement/advertisement.json');
     return this.http.get<any[]>('https://cinemakompany.com/assets/images/advertisement/advertisement.json');
 
@@ -33,7 +35,7 @@ export class MovieService {
 
   getMovieReviws(): Observable<any[]> {
     // return this.http.get<any[]>('assets/images/reviews/reviews.json');
-    return this.http.get<any[]>('https://jsonplaceholder.typicode.com/todos/1');
+    return this.http.get<any[]>('https://cinemakompany.com/assets/images/reviews/reviews.json');
 
   }
 

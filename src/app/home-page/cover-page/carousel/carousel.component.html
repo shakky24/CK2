@@ -7,11 +7,6 @@
         <div class="header">
             <div class="menu-item">
                 <p class="menu-link" (mouseover)="showDropdown('home')" [class.selected]="activeDropdown === 'home'" (mouseleave)="hideDropdown()">Home</p>
-                <!-- <div *ngIf="activeDropdown === 'home'" class="dropdown-content">
-                    <p (click)="onItemClick('ott')">Now In OTT</p>
-                    <p>Now In Theatres</p>
-                    <p>Upcoming Movies</p>
-                </div> -->
             </div>
             <div class="menu-item">
                 <p  (click)="onReviewClick()" class="menu-link" [class.selected]="activeDropdown === 'reviews'" (mouseover)="showDropdown('reviews')" (mouseleave)="hideDropdown()">Reviews</p>
@@ -26,20 +21,12 @@
                 <p (click)="onAboutClick()" class="menu-link" (mouseover)="showDropdown('about')" (mouseleave)="hideDropdown()">About</p>
                 
             </div>
-            <!-- <div class="menu-item">
-                <p class="menu-link" (mouseover)="showDropdown('contact')" (mouseleave)="hideDropdown()">Contact</p>
-                
-            </div> -->
         </div>
     </div>
 
     <div class="carousel-container" [@slideAnimation]="currentIndex">
         <div *ngFor="let slide of slides; let i = index" [ngClass]="{ 'active': i === currentIndex }"
             class="carousel-slide" (touchstart)="onTouchStart($event)">
-            <!-- <div style="display: grid; grid-template-rows: min-content auto;"> -->
-
-            <!-- <div
-                    style="display: grid; grid-auto-flow: column; grid-auto-columns: min-content; justify-content: center;background-color: red; "> -->
 
 
             <div class="gradient-overlay">
@@ -50,14 +37,13 @@
 
 
 
-            <div>
+            <!-- <div>
                 <div [@textAnimation]="animationState" class="text">
 
                     <div class="textCntainer">
                         <div style="display: grid;">
 
 
-                            <!-- <p class="" [@textAnimation]="animationState">Best of 2023</p> -->
                             <p class="movieName" [@textAnimation]="animationState">{{slide.movieName}}</p>
                             <p class="movieTag" [@textAnimation]="animationState">{{slide.movieTag}}</p>
                             <div
@@ -69,7 +55,6 @@
 
                             </div>
 
-                            <!-- <p class="movieTag" [@textAnimation]="animationState">{{slide.subDescription}}</p> -->
                             <p class="movieTag">{{slide.subDescription}}
                             </p>
 
@@ -102,18 +87,14 @@
 
                 </div>
 
-                <!-- <div class="gradient-overlay"> -->
-                <!-- <div class="gradient"></div> -->
                 <img class="thumbnailImage" [@overlayAnimation]="animationState" src="https://cinemakompany.com/{{slide.image}}"
                     alt="Slide {{ slide.id }}">
-                <!-- </div> -->
 
 
 
 
 
                 <div class="playIcon">
-                    <!-- <div class='container'> -->
                     <a [@overlayAnimation]="animationState" href="{{slide.videoUrl}}" class="playBut">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                             xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="80.7px"
@@ -130,20 +111,18 @@
 
                     </a>
                 </div>
-            </div>
-            <!-- </div>
-
             </div> -->
+
         </div>
 
     </div>
 
-    <div class="dot-indicators">
+    <!-- <div class="dot-indicators">
         <span *ngFor="let slide of slides; let i = index" [ngClass]="{ 'active': i === currentIndex }"
             (click)="goToSlide(i)"></span>
-    </div>
+    </div> -->
 
 
-    <mat-icon (click)="clickNextSlide()" class="arrowButtonsRight">arrow_forward_ios</mat-icon>
-    <mat-icon (click)="previousSlide()" class="arrowButtonsLeft">arrow_back_ios</mat-icon>
+    <!-- <mat-icon (click)="clickNextSlide()" class="arrowButtonsRight">arrow_forward_ios</mat-icon>
+    <mat-icon (click)="previousSlide()" class="arrowButtonsLeft">arrow_back_ios</mat-icon> -->
 </div>

@@ -1,4 +1,3 @@
-import { animate, query, stagger, state, style, transition, trigger } from '@angular/animations';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, HostListener, Inject, OnInit, Renderer2 } from '@angular/core';
@@ -18,24 +17,24 @@ import { MovieService } from 'src/app/services/movies.service';
   providers:[MovieService, SharedDataService ],
 
   animations: [
-    trigger('slideAnimation', [
-      transition('* <=> *', [
-        query('.carousel-slide', style({ transform: 'translateX(80%)', opacity: 0 })),
-        query('.carousel-slide', stagger('0ms', [
-          animate('.5s ease-in-out', style({ transform: 'translateX(0)', opacity: 1 }))
-        ]))
-      ])
-    ]),
-    trigger('textAnimation', [
-      state('hidden', style({ opacity: 0, transform: 'translateX(-80px)' })),
-      state('visible', style({ opacity: 1, transform: 'translateX(0)' })),
-      transition('hidden => visible', animate('400ms')),
-    ]),
-    trigger('overlayAnimation', [
-      state('hidden', style({ opacity: 0, transform: 'translateX(-100px)' })),
-      state('visible', style({ opacity: 1, transform: 'translateX(0)' })),
-      transition('hidden => visible', animate('400ms 800ms')), // Delay the overlay animation by 1 second
-    ]),
+    // trigger('slideAnimation', [
+    //   transition('* <=> *', [
+    //     query('.carousel-slide', style({ transform: 'translateX(80%)', opacity: 0 })),
+    //     query('.carousel-slide', stagger('0ms', [
+    //       animate('.5s ease-in-out', style({ transform: 'translateX(0)', opacity: 1 }))
+    //     ]))
+    //   ])
+    // ]),
+    // trigger('textAnimation', [
+    //   state('hidden', style({ opacity: 0, transform: 'translateX(-80px)' })),
+    //   state('visible', style({ opacity: 1, transform: 'translateX(0)' })),
+    //   transition('hidden => visible', animate('400ms')),
+    // ]),
+    // trigger('overlayAnimation', [
+    //   state('hidden', style({ opacity: 0, transform: 'translateX(-100px)' })),
+    //   state('visible', style({ opacity: 1, transform: 'translateX(0)' })),
+    //   transition('hidden => visible', animate('400ms 800ms')), // Delay the overlay animation by 1 second
+    // ]),
   ]
 })
 export class CarouselComponent implements OnInit, AfterViewInit {
@@ -91,7 +90,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
     //   { id: 2, image: 'assets/images/NowinTheatres/VOS.jpg' },
     //   { id: 3, image: 'assets/images/NowinTheatres/2018.jpg' },
     // ];
-    this.startSlideShow()
+    // this.startSlideShow()
   }
 
   onItemClick(item: string): void {
