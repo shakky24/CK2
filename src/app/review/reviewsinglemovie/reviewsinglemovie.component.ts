@@ -61,7 +61,7 @@ export class ReviewsinglemovieComponent implements OnInit {
   }
   onMoreReviewClick() {
 
-    this.router.navigate(['home-page/reviews']);
+    this.router.navigate(['reviews']);
   }
 
   loadMovieData(id: string): void {

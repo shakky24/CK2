@@ -37,15 +37,15 @@
 
 
 
-            <!-- <div>
-                <div [@textAnimation]="animationState" class="text">
+            <div>
+                <div class="text">
 
                     <div class="textCntainer">
                         <div style="display: grid;">
 
 
-                            <p class="movieName" [@textAnimation]="animationState">{{slide.movieName}}</p>
-                            <p class="movieTag" [@textAnimation]="animationState">{{slide.movieTag}}</p>
+                            <p class="movieName">{{slide.movieName}}</p>
+                            <p class="movieTag" >{{slide.movieTag}}</p>
                             <div
                                 style="display: grid;grid-template-columns: min-content min-content;column-gap: .5rem;margin: 1rem;">
                                 <img class="imdbText" [@overlayAnimation]="animationState" src="assets/images/imdb.png"
@@ -66,7 +66,7 @@
 
 
 
-                            <div [@textAnimation]="animationState" class="movie-info">
+                            <div  class="movie-info">
                                 <div class="info-label">Cast :</div>
                                 <div class="info-value">{{slide.cast}}</div>
                                 <div class="info-label">Director :</div>
@@ -87,7 +87,7 @@
 
                 </div>
 
-                <img class="thumbnailImage" [@overlayAnimation]="animationState" src="https://cinemakompany.com/{{slide.image}}"
+                <img class="thumbnailImage" src="https://cinemakompany.com/{{slide.image}}"
                     alt="Slide {{ slide.id }}">
 
 
@@ -95,7 +95,7 @@
 
 
                 <div class="playIcon">
-                    <a [@overlayAnimation]="animationState" href="{{slide.videoUrl}}" class="playBut">
+                    <a  href="{{slide.videoUrl}}" class="playBut">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                             xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="80.7px"
                             height="80.7px" viewBox="0 0 213.7 213.7" enable-background="new 0 0 213.7 213.7"
@@ -111,7 +111,7 @@
 
                     </a>
                 </div>
-            </div> -->
+            </div>
 
         </div>
 

@@ -33,7 +33,7 @@ export class NowInTheatresComponent {
 
     this.sharedDataService.updateMovieData(movie);
 
-    this.router.navigate(['/home-page/now_in_theatre'],{ state: { data: movie } });
+    this.router.navigate(['/now_in_theatre'],{ state: { data: movie } });
 
     
   }
