@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SplitParagraphPipe } from 'src/app/pipes/split-paragraph.pipe';
 import { SharedDataService } from 'src/app/services/SharedDataService';
@@ -18,7 +18,7 @@ import { SEOService } from 'src/app/services/seo.service';
 })
 export class SingleNewsComponent implements OnInit {
   imageSource = '';
-  description = 'Your long description goes here Your long description goes here Your long description goes here Your long description goes here Your long description goes here Your long description goes here  ...';
+  description = '';
   descriptionLimit = 150; // Adjust this as needed
   title: string = '';
   news: string = '';
@@ -42,7 +42,8 @@ export class SingleNewsComponent implements OnInit {
     private readonly router: Router,
     private route: ActivatedRoute,
     private meta: Meta,
-    private movieService: MovieService
+    private movieService: MovieService,
+    private titleService: Title
   ) {
 
     // this.meta.addTag({ property: 'og:description', content: "1" });
@@ -69,7 +70,7 @@ export class SingleNewsComponent implements OnInit {
           this.description = ele.description;
           this.imageSource = ele.image;
           this.news = ele.news;
-          console.log('sss', this.imageSource);
+          console.log('sss', ele);
           this.meta.addTag({ name: 'description', content: ele.description });
           this.meta.addTag({ name: 'image', content: `https://cinemakompany.com/${ele.image}` });
           this.meta.addTag({ name: 'title', content: ele.movieName });
@@ -83,6 +84,8 @@ export class SingleNewsComponent implements OnInit {
           this.meta.updateTag({ property: 'og:description', content: ele.description });
           this.meta.updateTag({ property: 'og:image', content: `https://cinemakompany.com/${ele.image}` });
           this.meta.updateTag({ property: 'og:title', content: ele.movieName });
+          this.titleService.setTitle(`${ele?.movieName} News`);
+
           // console.log("updated", this.meta.getTag("'property=og:description'"))
         }
       })

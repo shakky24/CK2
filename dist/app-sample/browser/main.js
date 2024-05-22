@@ -2054,15 +2054,16 @@ function NewsComponent_div_2_Template(rf, ctx) {
 }
 class NewsComponent {
   constructor(titleService, router, meta, movieService) {
-    // this.meta.addTag(
-    //   { name: 'description', content: 'summary_large_image' },
-    // );
     this.titleService = titleService;
     this.router = router;
     this.meta = meta;
     this.movieService = movieService;
     this.items = [];
     this.reviewLength = 200;
+    this.titleService.setTitle('News-CinemaKompany');
+    // this.meta.addTag(
+    //   { name: 'description', content: 'summary_large_image' },
+    // );
     this.meta.addTag({
       property: 'og:description',
       content: "Cinema Kompany"
@@ -2263,7 +2264,7 @@ function SingleNewsComponent_div_24_Template(rf, ctx) {
   }
 }
 class SingleNewsComponent {
-  constructor(sharedDataService, router, route, meta, movieService) {
+  constructor(sharedDataService, router, route, meta, movieService, titleService) {
     // this.meta.addTag({ property: 'og:description', content: "1" });
     // this.meta.addTag({ property: 'og:image', content: "1" });
     // this.meta.addTag({ property: 'og:title', content: "1" });
@@ -2275,8 +2276,9 @@ class SingleNewsComponent {
     this.route = route;
     this.meta = meta;
     this.movieService = movieService;
+    this.titleService = titleService;
     this.imageSource = '';
-    this.description = 'Your long description goes here Your long description goes here Your long description goes here Your long description goes here Your long description goes here Your long description goes here  ...';
+    this.description = '';
     this.descriptionLimit = 150; // Adjust this as needed
     this.title = '';
     this.news = '';
@@ -2311,7 +2313,7 @@ class SingleNewsComponent {
           this.description = ele.description;
           this.imageSource = ele.image;
           this.news = ele.news;
-          console.log('sss', this.imageSource);
+          console.log('sss', ele);
           this.meta.addTag({
             name: 'description',
             content: ele.description
@@ -2360,6 +2362,7 @@ class SingleNewsComponent {
             property: 'og:title',
             content: ele.movieName
           });
+          this.titleService.setTitle(`${ele?.movieName} News`);
           // console.log("updated", this.meta.getTag("'property=og:description'"))
         }
       });
@@ -2508,7 +2511,7 @@ class SingleNewsComponent {
     this.fetchCarouselData();
   }
   static #_ = this.ɵfac = function SingleNewsComponent_Factory(t) {
-    return new (t || SingleNewsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](src_app_services_SharedDataService__WEBPACK_IMPORTED_MODULE_1__.SharedDataService), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__.Router), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__.ActivatedRoute), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__.Meta), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](src_app_services_movies_service__WEBPACK_IMPORTED_MODULE_2__.MovieService));
+    return new (t || SingleNewsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](src_app_services_SharedDataService__WEBPACK_IMPORTED_MODULE_1__.SharedDataService), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__.Router), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__.ActivatedRoute), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__.Meta), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](src_app_services_movies_service__WEBPACK_IMPORTED_MODULE_2__.MovieService), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__.Title));
   };
   static #_2 = this.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineComponent"]({
     type: SingleNewsComponent,
@@ -2818,8 +2821,9 @@ function ReviewComponent_div_5_Template(rf, ctx) {
   }
 }
 class ReviewComponent {
-  constructor(titleService, sharedDataService, movieService, router) {
+  constructor(titleService, metaService, sharedDataService, movieService, router) {
     this.titleService = titleService;
+    this.metaService = metaService;
     this.sharedDataService = sharedDataService;
     this.movieService = movieService;
     this.router = router;
@@ -2835,6 +2839,14 @@ class ReviewComponent {
   updateTitle() {
     // Logic to update title dynamically based on your page content
     this.titleService.setTitle('Reviews-CinemaKompany');
+    this.metaService.addTag({
+      property: 'og:description',
+      content: "Cinema Kompany"
+    });
+    this.metaService.addTag({
+      property: 'og:image',
+      content: "../../assets/images/logo3.png"
+    });
   }
   clickOnReview(movie) {
     this.sharedDataService.updateMovieDataFromReview(movie);
@@ -2857,7 +2869,7 @@ class ReviewComponent {
     this.router.navigate(['']);
   }
   static #_ = this.ɵfac = function ReviewComponent_Factory(t) {
-    return new (t || ReviewComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__.Title), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](src_app_services_SharedDataService__WEBPACK_IMPORTED_MODULE_0__.SharedDataService), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](src_app_services_movies_service__WEBPACK_IMPORTED_MODULE_1__.MovieService), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_4__.Router));
+    return new (t || ReviewComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__.Title), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__.Meta), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](src_app_services_SharedDataService__WEBPACK_IMPORTED_MODULE_0__.SharedDataService), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](src_app_services_movies_service__WEBPACK_IMPORTED_MODULE_1__.MovieService), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_4__.Router));
   };
   static #_2 = this.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineComponent"]({
     type: ReviewComponent,
@@ -2970,7 +2982,7 @@ class ReviewsinglemovieComponent {
     this.imageCompress = imageCompress;
     this.movieService = movieService;
     this.imageSource = '';
-    this.description = 'Your long description goes here Your long description goes here Your long description goes here Your long description goes here Your long description goes here Your long description goes here  ...';
+    this.description = '';
     this.descriptionLimit = 150; // Adjust this as needed
     this.title = '';
     this.review = '';
@@ -2988,13 +3000,29 @@ class ReviewsinglemovieComponent {
   }
   ngOnInit() {
     console.log("first");
-    this.metaService.updateTag({
-      property: 'og:image',
-      content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg'
-    });
+    // this.metaService.updateTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
     this.route.params.subscribe(params => {
       this.id = params['movie_id'];
       this.loadMovieData(this.id);
+    });
+    this.movieService.getMovieReviws().subscribe(doc => {
+      doc.map(data => {
+        if (data.id == this.id) {
+          this.titleService.setTitle(`${data?.movieName} News`);
+          this.metaService.updateTag({
+            property: 'og:title',
+            content: `${data?.movieName} Movie News From CinemaKompany`
+          });
+          this.metaService.updateTag({
+            property: 'og:description',
+            content: data?.description
+          });
+          this.metaService.updateTag({
+            property: 'og:image',
+            content: `https://cinemakompany.com/${data.image}`
+          });
+        }
+      });
     });
     this.fetchCarouselData();
   }
@@ -3012,15 +3040,6 @@ class ReviewsinglemovieComponent {
     if (data) {
       // Assuming the data is stored as an object with movie IDs as keys
       if (data.id == id) {
-        this.titleService.setTitle(`${data?.movieName} Review`);
-        this.metaService.updateTag({
-          property: 'og:title',
-          content: `${data?.movieName} Movie Review From CinemaKompany`
-        });
-        this.metaService.updateTag({
-          property: 'og:description',
-          content: data?.review
-        });
         const imageURL = `https://cinemakompany.com/assets/images/reviews/${data?.movieName}.jpg`;
         // Compress and update image
         this.compressAndUpdateImage(imageURL);
@@ -3170,7 +3189,7 @@ class ReviewsinglemovieComponent {
       }
     },
     dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_6__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_6__.NgClass, _angular_common__WEBPACK_IMPORTED_MODULE_6__.NgForOf, _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpClientModule],
-    styles: [".container[_ngcontent-%COMP%] {\n  display: grid;\n  place-items: center; \n\n  grid-template-rows: 2fr auto; \n\n  min-height: 100vh; \n\n}\n\n.top-section[_ngcontent-%COMP%] {\n  display: grid;\n  justify-self: center;\n  margin: 2rem;\n  text-align: center;\n  overflow: auto;\n}\n\n.top-section[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  max-width: 73%;\n  height: 72%;\n}\n\n.top-section[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  font-size: 18px; \n\n}\n\n@media (max-width: 768px) {\n  .top-section[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n    font-size: 16px;\n  }\n}\n.bottom-section[_ngcontent-%COMP%] {\n  display: grid;\n  grid-row: 2/3;\n  margin: 1rem 0.4rem;\n}\n\n.star-rating[_ngcontent-%COMP%] {\n  margin: 1rem 0;\n  font-size: 24px;\n  text-align: start;\n  padding: 0.6rem 0;\n}\n\n.star[_ngcontent-%COMP%] {\n  color: #ccc; \n\n}\n\n.star.filled[_ngcontent-%COMP%] {\n  color: #FFD700; \n\n}\n\n\n\n[_ngcontent-%COMP%]::-webkit-scrollbar {\n  width: 0;\n  height: 0;\n}\n\n\n\n[_ngcontent-%COMP%]::-webkit-scrollbar-track {\n  background: transparent;\n}\n\n\n\n[_ngcontent-%COMP%]::-webkit-scrollbar-thumb {\n  background: transparent;\n}\n\n.carousel-wrapper[_ngcontent-%COMP%] {\n  display: grid;\n  grid-auto-flow: column;\n  justify-items: center;\n  margin-top: 1.2rem;\n}\n\n.carousel-image[_ngcontent-%COMP%] {\n  width: 22rem;\n  height: 12rem;\n  cursor: pointer;\n}\n\n.carousel-image[_ngcontent-%COMP%]:hover {\n  width: 24rem;\n  height: 14rem;\n  cursor: pointer;\n  transition: 0.2s ease-out;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvcmV2aWV3L3Jldmlld3NpbmdsZW1vdmllL3Jldmlld3NpbmdsZW1vdmllLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksYUFBQTtFQUNBLG1CQUFBLEVBQUEsb0RBQUE7RUFDQSw0QkFBQSxFQUFBLDhCQUFBO0VBQ0EsaUJBQUEsRUFBQSxvRUFBQTtBQUNKOztBQUNFO0VBQ0UsYUFBQTtFQUNBLG9CQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0VBRUEsY0FBQTtBQUNKOztBQUlFO0VBQ0UsY0FBQTtFQUNBLFdBQUE7QUFESjs7QUFPRTtFQUNFLGVBQUEsRUFBQSxxQkFBQTtBQUpKOztBQU9FO0VBQ0U7SUFDRSxlQUFBO0VBSko7QUFDRjtBQVNFO0VBQ0UsYUFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtBQVBKOztBQVVFO0VBQ0UsY0FBQTtFQUNBLGVBQUE7RUFDQSxpQkFBQTtFQUNBLGlCQUFBO0FBUEo7O0FBVUU7RUFDRSxXQUFBLEVBQUEsdUJBQUE7QUFQSjs7QUFVRTtFQUNFLGNBQUEsRUFBQSxzQkFBQTtBQVBKOztBQVdBLGtDQUFBO0FBQ0E7RUFDRSxRQUFBO0VBQ0EsU0FBQTtBQVJGOztBQVdBLDBEQUFBO0FBQ0E7RUFDRSx1QkFBQTtBQVJGOztBQVdBLG9FQUFBO0FBQ0E7RUFDRSx1QkFBQTtBQVJGOztBQVdBO0VBQ0UsYUFBQTtFQUNBLHNCQUFBO0VBQ0EscUJBQUE7RUFDQSxrQkFBQTtBQVJGOztBQVdBO0VBQ0UsWUFBQTtFQUNBLGFBQUE7RUFDQSxlQUFBO0FBUkY7O0FBV0E7RUFDRSxZQUFBO0VBQ0EsYUFBQTtFQUNBLGVBQUE7RUFDQSx5QkFBQTtBQVJGIiwic291cmNlc0NvbnRlbnQiOlsiLmNvbnRhaW5lciB7XHJcbiAgICBkaXNwbGF5OiBncmlkO1xyXG4gICAgcGxhY2UtaXRlbXM6IGNlbnRlcjsgLyogQ2VudGVyIGNvbnRlbnQgYm90aCBob3Jpem9udGFsbHkgYW5kIHZlcnRpY2FsbHkgKi9cclxuICAgIGdyaWQtdGVtcGxhdGUtcm93czogMmZyIGF1dG87IC8qIDc1JSB0b3AsIHJlbWFpbmluZyBib3R0b20gKi9cclxuICAgIG1pbi1oZWlnaHQ6IDEwMHZoOyAvKiBFbnN1cmUgdGhlIGNvbnRhaW5lciB0YWtlcyB1cCBhdCBsZWFzdCB0aGUgZnVsbCB2aWV3cG9ydCBoZWlnaHQgKi9cclxuICB9XHJcbiAgLnRvcC1zZWN0aW9ue1xyXG4gICAgZGlzcGxheTogZ3JpZDtcclxuICAgIGp1c3RpZnktc2VsZjogY2VudGVyO1xyXG4gICAgbWFyZ2luOiAycmVtO1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gICAgLy8gaGVpZ2h0OiA5MHZoO1xyXG4gICAgb3ZlcmZsb3c6IGF1dG87XHJcbiAgICAvLyB3aWR0aDogNzB2dztcclxuICAgIC8vIGdyaWQtdGVtcGxhdGUtcm93czogMWZyIDJmcjtcclxuICB9XHJcbiAgXHJcbiAgLnRvcC1zZWN0aW9uIGltZyB7XHJcbiAgICBtYXgtd2lkdGg6IDczJTtcclxuICAgIGhlaWdodDogNzIlO1xyXG4gICAgLy8gbWF4LWhlaWdodDogMzAlO1xyXG4gICAgLy8gb2JqZWN0LWZpdDogY29udGFpbjtcclxuICAgIC8vIGhlaWdodDogYXV0bztcclxuICB9XHJcbiAgXHJcbiAgLnRvcC1zZWN0aW9uIHAge1xyXG4gICAgZm9udC1zaXplOiAxOHB4OyAvKiBBZGp1c3QgYXMgbmVlZGVkICovXHJcbiAgfVxyXG4gIFxyXG4gIEBtZWRpYSAobWF4LXdpZHRoOiA3NjhweCkge1xyXG4gICAgLnRvcC1zZWN0aW9uIHAge1xyXG4gICAgICBmb250LXNpemU6IDE2cHg7XHJcbiAgICB9XHJcbiAgICBcclxuICAgIFxyXG4gIH1cclxuICBcclxuICAuYm90dG9tLXNlY3Rpb24ge1xyXG4gICAgZGlzcGxheTogZ3JpZDtcclxuICAgIGdyaWQtcm93OiAyIC8gMztcclxuICAgIG1hcmdpbjogMXJlbSAuNHJlbTtcclxuICB9XHJcbiAgXHJcbiAgLnN0YXItcmF0aW5nIHtcclxuICAgIG1hcmdpbjogMXJlbSAwO1xyXG4gICAgZm9udC1zaXplOiAyNHB4O1xyXG4gICAgdGV4dC1hbGlnbjogc3RhcnQ7XHJcbiAgICBwYWRkaW5nOiAuNnJlbSAwO1xyXG4gIH1cclxuICBcclxuICAuc3RhciB7XHJcbiAgICBjb2xvcjogI2NjYzsgLyogRGVmYXVsdCBzdGFyIGNvbG9yICovXHJcbiAgfVxyXG4gIFxyXG4gIC5zdGFyLmZpbGxlZCB7XHJcbiAgICBjb2xvcjogI0ZGRDcwMDsgLyogRmlsbGVkIHN0YXIgY29sb3IgKi9cclxuICB9IFxyXG5cclxuICBcclxuLyogSGlkZSB0aGUgaG9yaXpvbnRhbCBzY3JvbGxiYXIgKi9cclxuOjotd2Via2l0LXNjcm9sbGJhciB7XHJcbiAgd2lkdGg6IDA7XHJcbiAgaGVpZ2h0OiAwO1xyXG59XHJcblxyXG4vKiBPcHRpb25hbDogU3R5bGUgdGhlIHRyYWNrICh0aGUgYXJlYSBiZWhpbmQgdGhlIHRodW1iKSAqL1xyXG46Oi13ZWJraXQtc2Nyb2xsYmFyLXRyYWNrIHtcclxuICBiYWNrZ3JvdW5kOiB0cmFuc3BhcmVudDtcclxufVxyXG5cclxuLyogT3B0aW9uYWw6IFN0eWxlIHRoZSB0aHVtYiAodGhlIGRyYWdnYWJsZSBwYXJ0IG9mIHRoZSBzY3JvbGxiYXIpICovXHJcbjo6LXdlYmtpdC1zY3JvbGxiYXItdGh1bWIge1xyXG4gIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xyXG59XHJcblxyXG4uY2Fyb3VzZWwtd3JhcHBlcntcclxuICBkaXNwbGF5OiBncmlkO1xyXG4gIGdyaWQtYXV0by1mbG93OiBjb2x1bW47XHJcbiAganVzdGlmeS1pdGVtczogY2VudGVyO1xyXG4gIG1hcmdpbi10b3A6IDEuMnJlbTtcclxufVxyXG5cclxuLmNhcm91c2VsLWltYWdle1xyXG4gIHdpZHRoOiAyMnJlbTtcclxuICBoZWlnaHQ6IDEycmVtO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG5cclxuLmNhcm91c2VsLWltYWdlOmhvdmVye1xyXG4gIHdpZHRoOiAyNHJlbTtcclxuICBoZWlnaHQ6IDE0cmVtO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxuICB0cmFuc2l0aW9uOiAwLjJzIGVhc2Utb3V0O1xyXG59Il0sInNvdXJjZVJvb3QiOiIifQ== */"]
+    styles: [".container[_ngcontent-%COMP%] {\n  display: grid;\n  place-items: center; \n\n  grid-template-rows: 2fr auto; \n\n  min-height: 100vh; \n\n}\n\n.top-section[_ngcontent-%COMP%] {\n  display: grid;\n  justify-self: center;\n  margin: 2rem;\n  text-align: center;\n  overflow: auto;\n}\n\n.top-section[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  max-width: 73%;\n  height: 72%;\n}\n\n.top-section[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  font-size: 18px; \n\n}\n\n@media (max-width: 768px) {\n  .top-section[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n    font-size: 16px;\n  }\n}\n.bottom-section[_ngcontent-%COMP%] {\n  display: grid;\n  grid-row: 2/3;\n  margin: 1rem 0.4rem;\n}\n\n.star-rating[_ngcontent-%COMP%] {\n  margin: 1rem 0;\n  font-size: 24px;\n  text-align: start;\n  padding: 0.6rem 0;\n}\n\n.star[_ngcontent-%COMP%] {\n  color: #ccc; \n\n}\n\n.star.filled[_ngcontent-%COMP%] {\n  color: #FFD700; \n\n}\n\n\n\n[_ngcontent-%COMP%]::-webkit-scrollbar {\n  width: 0;\n  height: 0;\n}\n\n\n\n[_ngcontent-%COMP%]::-webkit-scrollbar-track {\n  background: transparent;\n}\n\n\n\n[_ngcontent-%COMP%]::-webkit-scrollbar-thumb {\n  background: transparent;\n}\n\n.carousel-wrapper[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr 1fr;\n  justify-items: center;\n  margin-top: 1.2rem;\n}\n\n.carousel-image[_ngcontent-%COMP%] {\n  width: 22rem;\n  height: 12rem;\n  cursor: pointer;\n}\n\n.carousel-image[_ngcontent-%COMP%]:hover {\n  width: 24rem;\n  height: 14rem;\n  cursor: pointer;\n  transition: 0.2s ease-out;\n}\n\n@media screen and (max-width: 1280px) {\n  .carousel-wrapper[_ngcontent-%COMP%] {\n    display: grid;\n    grid-template-columns: 1fr 1fr 1fr;\n    justify-items: center;\n    margin-top: 1.2rem;\n  }\n}\n@media screen and (max-width: 1170px) {\n  .carousel-wrapper[_ngcontent-%COMP%] {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    justify-items: center;\n    margin-top: 1.2rem;\n  }\n}\n@media screen and (max-width: 740px) {\n  .carousel-wrapper[_ngcontent-%COMP%] {\n    display: grid;\n    grid-template-columns: 1fr;\n    justify-items: center;\n    margin-top: 1.2rem;\n  }\n  .carousel-image[_ngcontent-%COMP%] {\n    width: 100%;\n    height: 12rem;\n    cursor: pointer;\n  }\n  .carousel-image[_ngcontent-%COMP%]:hover {\n    width: 100%;\n    height: 14rem;\n    cursor: pointer;\n    transition: 0.2s ease-out;\n  }\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvcmV2aWV3L3Jldmlld3NpbmdsZW1vdmllL3Jldmlld3NpbmdsZW1vdmllLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksYUFBQTtFQUNBLG1CQUFBLEVBQUEsb0RBQUE7RUFDQSw0QkFBQSxFQUFBLDhCQUFBO0VBQ0EsaUJBQUEsRUFBQSxvRUFBQTtBQUNKOztBQUNFO0VBQ0UsYUFBQTtFQUNBLG9CQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0VBRUEsY0FBQTtBQUNKOztBQUlFO0VBQ0UsY0FBQTtFQUNBLFdBQUE7QUFESjs7QUFPRTtFQUNFLGVBQUEsRUFBQSxxQkFBQTtBQUpKOztBQU9FO0VBQ0U7SUFDRSxlQUFBO0VBSko7QUFDRjtBQVNFO0VBQ0UsYUFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtBQVBKOztBQVVFO0VBQ0UsY0FBQTtFQUNBLGVBQUE7RUFDQSxpQkFBQTtFQUNBLGlCQUFBO0FBUEo7O0FBVUU7RUFDRSxXQUFBLEVBQUEsdUJBQUE7QUFQSjs7QUFVRTtFQUNFLGNBQUEsRUFBQSxzQkFBQTtBQVBKOztBQVdBLGtDQUFBO0FBQ0E7RUFDRSxRQUFBO0VBQ0EsU0FBQTtBQVJGOztBQVdBLDBEQUFBO0FBQ0E7RUFDRSx1QkFBQTtBQVJGOztBQVdBLG9FQUFBO0FBQ0E7RUFDRSx1QkFBQTtBQVJGOztBQVdBO0VBQ0UsYUFBQTtFQUNBLHNDQUFBO0VBQ0EscUJBQUE7RUFDQSxrQkFBQTtBQVJGOztBQVdBO0VBQ0UsWUFBQTtFQUNBLGFBQUE7RUFDQSxlQUFBO0FBUkY7O0FBV0E7RUFDRSxZQUFBO0VBQ0EsYUFBQTtFQUNBLGVBQUE7RUFDQSx5QkFBQTtBQVJGOztBQVdBO0VBQ0U7SUFDRSxhQUFBO0lBQ0Esa0NBQUE7SUFDQSxxQkFBQTtJQUNBLGtCQUFBO0VBUkY7QUFDRjtBQVdBO0VBQ0U7SUFDRSxhQUFBO0lBQ0EsOEJBQUE7SUFDQSxxQkFBQTtJQUNBLGtCQUFBO0VBVEY7QUFDRjtBQVlBO0VBQ0U7SUFDRSxhQUFBO0lBQ0EsMEJBQUE7SUFDQSxxQkFBQTtJQUNBLGtCQUFBO0VBVkY7RUFhQTtJQUNFLFdBQUE7SUFDQSxhQUFBO0lBQ0EsZUFBQTtFQVhGO0VBY0E7SUFDRSxXQUFBO0lBQ0EsYUFBQTtJQUNBLGVBQUE7SUFDQSx5QkFBQTtFQVpGO0FBQ0YiLCJzb3VyY2VzQ29udGVudCI6WyIuY29udGFpbmVyIHtcclxuICAgIGRpc3BsYXk6IGdyaWQ7XHJcbiAgICBwbGFjZS1pdGVtczogY2VudGVyOyAvKiBDZW50ZXIgY29udGVudCBib3RoIGhvcml6b250YWxseSBhbmQgdmVydGljYWxseSAqL1xyXG4gICAgZ3JpZC10ZW1wbGF0ZS1yb3dzOiAyZnIgYXV0bzsgLyogNzUlIHRvcCwgcmVtYWluaW5nIGJvdHRvbSAqL1xyXG4gICAgbWluLWhlaWdodDogMTAwdmg7IC8qIEVuc3VyZSB0aGUgY29udGFpbmVyIHRha2VzIHVwIGF0IGxlYXN0IHRoZSBmdWxsIHZpZXdwb3J0IGhlaWdodCAqL1xyXG4gIH1cclxuICAudG9wLXNlY3Rpb257XHJcbiAgICBkaXNwbGF5OiBncmlkO1xyXG4gICAganVzdGlmeS1zZWxmOiBjZW50ZXI7XHJcbiAgICBtYXJnaW46IDJyZW07XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgICAvLyBoZWlnaHQ6IDkwdmg7XHJcbiAgICBvdmVyZmxvdzogYXV0bztcclxuICAgIC8vIHdpZHRoOiA3MHZ3O1xyXG4gICAgLy8gZ3JpZC10ZW1wbGF0ZS1yb3dzOiAxZnIgMmZyO1xyXG4gIH1cclxuICBcclxuICAudG9wLXNlY3Rpb24gaW1nIHtcclxuICAgIG1heC13aWR0aDogNzMlO1xyXG4gICAgaGVpZ2h0OiA3MiU7XHJcbiAgICAvLyBtYXgtaGVpZ2h0OiAzMCU7XHJcbiAgICAvLyBvYmplY3QtZml0OiBjb250YWluO1xyXG4gICAgLy8gaGVpZ2h0OiBhdXRvO1xyXG4gIH1cclxuICBcclxuICAudG9wLXNlY3Rpb24gcCB7XHJcbiAgICBmb250LXNpemU6IDE4cHg7IC8qIEFkanVzdCBhcyBuZWVkZWQgKi9cclxuICB9XHJcbiAgXHJcbiAgQG1lZGlhIChtYXgtd2lkdGg6IDc2OHB4KSB7XHJcbiAgICAudG9wLXNlY3Rpb24gcCB7XHJcbiAgICAgIGZvbnQtc2l6ZTogMTZweDtcclxuICAgIH1cclxuICAgIFxyXG4gICAgXHJcbiAgfVxyXG4gIFxyXG4gIC5ib3R0b20tc2VjdGlvbiB7XHJcbiAgICBkaXNwbGF5OiBncmlkO1xyXG4gICAgZ3JpZC1yb3c6IDIgLyAzO1xyXG4gICAgbWFyZ2luOiAxcmVtIC40cmVtO1xyXG4gIH1cclxuICBcclxuICAuc3Rhci1yYXRpbmcge1xyXG4gICAgbWFyZ2luOiAxcmVtIDA7XHJcbiAgICBmb250LXNpemU6IDI0cHg7XHJcbiAgICB0ZXh0LWFsaWduOiBzdGFydDtcclxuICAgIHBhZGRpbmc6IC42cmVtIDA7XHJcbiAgfVxyXG4gIFxyXG4gIC5zdGFyIHtcclxuICAgIGNvbG9yOiAjY2NjOyAvKiBEZWZhdWx0IHN0YXIgY29sb3IgKi9cclxuICB9XHJcbiAgXHJcbiAgLnN0YXIuZmlsbGVkIHtcclxuICAgIGNvbG9yOiAjRkZENzAwOyAvKiBGaWxsZWQgc3RhciBjb2xvciAqL1xyXG4gIH0gXHJcblxyXG4gIFxyXG4vKiBIaWRlIHRoZSBob3Jpem9udGFsIHNjcm9sbGJhciAqL1xyXG46Oi13ZWJraXQtc2Nyb2xsYmFyIHtcclxuICB3aWR0aDogMDtcclxuICBoZWlnaHQ6IDA7XHJcbn1cclxuXHJcbi8qIE9wdGlvbmFsOiBTdHlsZSB0aGUgdHJhY2sgKHRoZSBhcmVhIGJlaGluZCB0aGUgdGh1bWIpICovXHJcbjo6LXdlYmtpdC1zY3JvbGxiYXItdHJhY2sge1xyXG4gIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xyXG59XHJcblxyXG4vKiBPcHRpb25hbDogU3R5bGUgdGhlIHRodW1iICh0aGUgZHJhZ2dhYmxlIHBhcnQgb2YgdGhlIHNjcm9sbGJhcikgKi9cclxuOjotd2Via2l0LXNjcm9sbGJhci10aHVtYiB7XHJcbiAgYmFja2dyb3VuZDogdHJhbnNwYXJlbnQ7XHJcbn1cclxuXHJcbi5jYXJvdXNlbC13cmFwcGVye1xyXG4gIGRpc3BsYXk6IGdyaWQ7XHJcbiAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxZnIgMWZyIDFmciAxZnI7XHJcbiAganVzdGlmeS1pdGVtczogY2VudGVyO1xyXG4gIG1hcmdpbi10b3A6IDEuMnJlbTtcclxufVxyXG5cclxuLmNhcm91c2VsLWltYWdle1xyXG4gIHdpZHRoOiAyMnJlbTtcclxuICBoZWlnaHQ6IDEycmVtO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG5cclxuLmNhcm91c2VsLWltYWdlOmhvdmVye1xyXG4gIHdpZHRoOiAyNHJlbTtcclxuICBoZWlnaHQ6IDE0cmVtO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxuICB0cmFuc2l0aW9uOiAwLjJzIGVhc2Utb3V0O1xyXG59XHJcblxyXG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoIDoxMjgwcHgpIHtcclxuICAuY2Fyb3VzZWwtd3JhcHBlcntcclxuICAgIGRpc3BsYXk6IGdyaWQ7XHJcbiAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmciAxZnIgMWZyO1xyXG4gICAganVzdGlmeS1pdGVtczogY2VudGVyO1xyXG4gICAgbWFyZ2luLXRvcDogMS4ycmVtO1xyXG4gIH1cclxufVxyXG5cclxuQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aCA6MTE3MHB4KSB7XHJcbiAgLmNhcm91c2VsLXdyYXBwZXJ7XHJcbiAgICBkaXNwbGF5OiBncmlkO1xyXG4gICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxZnIgMWZyIDtcclxuICAgIGp1c3RpZnktaXRlbXM6IGNlbnRlcjtcclxuICAgIG1hcmdpbi10b3A6IDEuMnJlbTtcclxuICB9XHJcbn1cclxuXHJcbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGggOjc0MHB4KSB7XHJcbiAgLmNhcm91c2VsLXdyYXBwZXJ7XHJcbiAgICBkaXNwbGF5OiBncmlkO1xyXG4gICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxZnI7XHJcbiAgICBqdXN0aWZ5LWl0ZW1zOiBjZW50ZXI7XHJcbiAgICBtYXJnaW4tdG9wOiAxLjJyZW07XHJcbiAgfVxyXG5cclxuICAuY2Fyb3VzZWwtaW1hZ2V7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIGhlaWdodDogMTJyZW07XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgfVxyXG5cclxuICAuY2Fyb3VzZWwtaW1hZ2U6aG92ZXJ7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIGhlaWdodDogMTRyZW07XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgICB0cmFuc2l0aW9uOiAwLjJzIGVhc2Utb3V0O1xyXG4gIH1cclxufSJdLCJzb3VyY2VSb290IjoiIn0= */"]
   });
 }
 

@@ -17,7 +17,7 @@ import { MovieService } from 'src/app/services/movies.service';
 })
 export class ReviewsinglemovieComponent implements OnInit {
   imageSource = '';
-  description = 'Your long description goes here Your long description goes here Your long description goes here Your long description goes here Your long description goes here Your long description goes here  ...';
+  description = '';
   descriptionLimit = 150; // Adjust this as needed
   title: string = '';
   review: string = '';
@@ -48,13 +48,26 @@ export class ReviewsinglemovieComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("first")
-    this.metaService.updateTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
+    // this.metaService.updateTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
 
     this.route.params.subscribe(params => {
 
       this.id = params['movie_id'];
       this.loadMovieData(this.id);
     });
+
+    this.movieService.getMovieReviws().subscribe((doc: any) => {
+      doc.map((data: any) => {
+        if (data.id == this.id) {
+          this.titleService.setTitle(`${data?.movieName} News`);
+          this.metaService.updateTag({ property: 'og:title', content: `${data?.movieName} Movie News From CinemaKompany` });
+          this.metaService.updateTag({ property: 'og:description', content: data?.description });
+          this.metaService.updateTag({ property: 'og:image', content: `https://cinemakompany.com/${data.image}` });
+         }
+      })
+    })
+
+
     this.fetchCarouselData()
   }
 
@@ -80,10 +93,9 @@ export class ReviewsinglemovieComponent implements OnInit {
       if (data.id == id) {
 
 
-        this.titleService.setTitle(`${data?.movieName} Review`);
-        this.metaService.updateTag({ property: 'og:title', content: `${data?.movieName} Movie Review From CinemaKompany` });
-        this.metaService.updateTag({ property: 'og:description', content: data?.review });
+
         const imageURL = `https://cinemakompany.com/assets/images/reviews/${data?.movieName}.jpg`;
+
 
         // Compress and update image
         this.compressAndUpdateImage(imageURL);

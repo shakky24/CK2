@@ -25,7 +25,7 @@ export class NewsComponent implements OnInit {
     private meta: Meta,
     private movieService: MovieService,
   ) {
-
+    this.titleService.setTitle('News-CinemaKompany');
     // this.meta.addTag(
     //   { name: 'description', content: 'summary_large_image' },
     // );
