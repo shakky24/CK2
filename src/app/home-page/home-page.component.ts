@@ -24,7 +24,15 @@ export class HomePageComponent {
   ngOnInit() {
     this.meta.addTag({
       name: 'description',
-      content: 'This is an article about Angular Meta service'
+      content: 'Cinema Kompany'
+    }, true);
+    this.meta.addTag({
+      name: 'title',
+      content: 'Cinema Kompany'
+    }, true);
+    this.meta.addTag({
+      name: 'image',
+      content: '../../assets/images/logo3.png'
     }, true);
   }
 
