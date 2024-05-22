@@ -35,6 +35,7 @@ export class SingleNewsComponent implements OnInit {
   sEOService: any;
   data: any;
   id: any;
+  items: any;
 
   constructor(
     private sharedDataService: SharedDataService,
@@ -61,30 +62,30 @@ export class SingleNewsComponent implements OnInit {
     });
 
     this.movieService.getMovieNews().subscribe((doc: any) => {
-      doc.map((ele:any) => {
+      doc.map((ele: any) => {
 
-      if (ele.id == this.id) {
-        this.movieName = ele.movieName;
-        this.description = ele.description;
-        this.imageSource = ele.image;
-        this.news = ele.news;
-        console.log('sss',this.imageSource);
-        this.meta.addTag({ name: 'description', content: ele.description });
-        this.meta.addTag({ name: 'image', content: `https://cinemakompany.com/${ele.image}` });
-        this.meta.addTag({ name: 'title', content: ele.movieName });
-        this.meta.addTag({ name: 'description', content: ele.description });
-        this.meta.addTag({ name: 'image', content: `https://cinemakompany.com/${ele.image}` });
-        this.meta.addTag({ name: 'title', content: ele.movieName });
+        if (ele.id == this.id) {
+          this.movieName = ele.movieName;
+          this.description = ele.description;
+          this.imageSource = ele.image;
+          this.news = ele.news;
+          console.log('sss', this.imageSource);
+          this.meta.addTag({ name: 'description', content: ele.description });
+          this.meta.addTag({ name: 'image', content: `https://cinemakompany.com/${ele.image}` });
+          this.meta.addTag({ name: 'title', content: ele.movieName });
+          this.meta.addTag({ name: 'description', content: ele.description });
+          this.meta.addTag({ name: 'image', content: `https://cinemakompany.com/${ele.image}` });
+          this.meta.addTag({ name: 'title', content: ele.movieName });
 
-        this.meta.addTag({ property: 'og:description', content: ele.description });
-        this.meta.addTag({ property: 'og:image', content: ele.image });
-        this.meta.addTag({ property: 'og:title', content: ele.movieName });
-        this.meta.updateTag({ property: 'og:description', content: ele.description });
-        this.meta.updateTag({ property: 'og:image', content: `https://cinemakompany.com/${ele.image}` });
-        this.meta.updateTag({ property: 'og:title', content: ele.movieName });
-        // console.log("updated", this.meta.getTag("'property=og:description'"))
-      }
-    })
+          this.meta.addTag({ property: 'og:description', content: ele.description });
+          this.meta.addTag({ property: 'og:image', content: ele.image });
+          this.meta.addTag({ property: 'og:title', content: ele.movieName });
+          this.meta.updateTag({ property: 'og:description', content: ele.description });
+          this.meta.updateTag({ property: 'og:image', content: `https://cinemakompany.com/${ele.image}` });
+          this.meta.updateTag({ property: 'og:title', content: ele.movieName });
+          // console.log("updated", this.meta.getTag("'property=og:description'"))
+        }
+      })
 
     })
 
@@ -119,7 +120,7 @@ export class SingleNewsComponent implements OnInit {
 
   ngOnInit(): void {
 
-
+    this.fetchCarouselData();
     // this.router.events.pipe(
     //   filter((event) => event instanceof NavigationEnd),
     //   map(() => this.route),
@@ -172,7 +173,7 @@ export class SingleNewsComponent implements OnInit {
   }
   onMoreReviewClick() {
 
-    this.router.navigate(['home-page/reviews']);
+    this.router.navigate(['/news']);
   }
 
   loadMovieData(id: string): void {
@@ -258,6 +259,26 @@ export class SingleNewsComponent implements OnInit {
     this.dynamicContent.description = `${this.movieName} Review`;
     this.dynamicContent.imageUrl = `${this.imageSource}`;
     this.dynamicContent.url = `https://Review-of-${this.movieName}.com/`;
+  }
+
+  fetchCarouselData() {
+    this.movieService.getMovieNews().subscribe((data: any[]) => {
+      console.log(data)
+      data.sort((a, b) => a.id - b.id);
+      let counter = 0;
+      this.items = data.filter(doc => {
+        counter += 1;
+        if (doc.id != this.id && (counter >= 1 && counter <= data.length - 1)) { return doc }
+      })
+    });
+  }
+
+  onNewsClick(movie: any) {
+    this.router.navigate([]).then(res => {
+      window.open(`/news/${movie?.id}`, '_blank');
+    });
+    this.sharedDataService.updateMovieDataFromReview(movie);
+    this.fetchCarouselData();
   }
 
 }

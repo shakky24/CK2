@@ -2,21 +2,24 @@
   Promo</p>
 <div class="main">
 
-  <!-- <div class="carousel-container" [@slideAnimation]="currentIndex">
+  <div class="carousel-container" [@slideAnimation]="currentIndex">
     <div *ngFor="let slide of slides; let i = index" [ngClass]="{ 'active': i === currentIndex }" class="carousel-slide"
       (touchstart)="onTouchStart($event)">
-        <img class="image" src="https://cinemakompany.com/{{slide.image}}" alt="Slide {{ slide.id }}">
+      <!-- <div class="gradient-overlay"> -->
+      <img class="image" src="https://cinemakompany.com/{{slide.image}}" alt="Slide {{ slide.id }}">
+      <!-- <div class="gradient"></div> -->
+      <!-- </div> -->
     </div>
-  </div> -->
+  </div>
 
 
 
   <!-- Center Display -->
   <div class="center-display">
 
-    <!-- <img (click)="handleTopButtonClick()" class="previous-image" [src]="getPreviousImage()" alt="Previous Slide"> -->
-    <img class="current-image" src="https://cinemakompany.com/{{slides[currentIndex].image}}" alt="Current Slide">
-    <!-- <img (click)="handleBottomButtonClick()" class="next-image" [src]="getNextImage()" alt="Next Slide"> -->
+    <img (click)="handleTopButtonClick()" class="previous-image" [src]="getPreviousImage()" alt="Previous Slide">
+    <img class="current-image" [src]="getCurrentImage()" alt="Current Slide">
+    <img (click)="handleBottomButtonClick()" class="next-image" [src]="getNextImage()" alt="Next Slide">
     <!-- <button class="bottom-button" (click)="handleBottomButtonClick()"><mat-icon>keyboard_arrow_right</mat-icon></button> -->
   </div>
 

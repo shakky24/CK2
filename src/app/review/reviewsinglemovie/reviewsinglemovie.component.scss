@@ -16,7 +16,8 @@
   }
   
   .top-section img {
-    max-width: 75%;
+    max-width: 73%;
+    height: 72%;
     // max-height: 30%;
     // object-fit: contain;
     // height: auto;
@@ -70,4 +71,24 @@
 /* Optional: Style the thumb (the draggable part of the scrollbar) */
 ::-webkit-scrollbar-thumb {
   background: transparent;
+}
+
+.carousel-wrapper{
+  display: grid;
+  grid-auto-flow: column;
+  justify-items: center;
+  margin-top: 1.2rem;
+}
+
+.carousel-image{
+  width: 22rem;
+  height: 12rem;
+  cursor: pointer;
+}
+
+.carousel-image:hover{
+  width: 24rem;
+  height: 14rem;
+  cursor: pointer;
+  transition: 0.2s ease-out;
 }

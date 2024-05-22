@@ -1,7 +1,7 @@
 import { animate, query, stagger, state, style, transition, trigger } from '@angular/animations';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, HostListener, Inject, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Inject, NgZone, OnInit, Renderer2 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -14,16 +14,16 @@ import { MovieService } from 'src/app/services/movies.service';
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],
   standalone: true,
-  imports:[CommonModule, MatIconModule, HttpClientModule],
-  providers:[MovieService, SharedDataService ],
+  imports: [CommonModule, MatIconModule, HttpClientModule],
+  providers: [MovieService, SharedDataService],
 
   animations: [
     trigger('slideAnimation', [
       transition('* <=> *', [
-        query('.carousel-slide', style({ transform: 'translateX(80%)', opacity: 0 })),
+        query('.carousel-slide', [style({ transform: 'translateX(80%)', opacity: 0 })], { optional: true }),
         query('.carousel-slide', stagger('0ms', [
-          animate('.5s ease-in-out', style({ transform: 'translateX(0)', opacity: 1 }))
-        ]))
+          animate('.6s ease-out', style({ transform: 'translateX(0)', opacity: 1 }))
+        ]), { optional: true })
       ])
     ]),
     trigger('textAnimation', [
@@ -42,22 +42,23 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   animationState: string = 'hidden';
   menuItems = MAIN_MENU_ITEMS;
   showIndex = -1;
+  a = 0;
+
+  
 
   constructor(
     private metaService: Meta,
     private titleService: Title,
-    private movieService: MovieService, 
-    private sharedDataService: SharedDataService, 
-    private readonly router: Router, 
-    private el: ElementRef, 
+    private movieService: MovieService,
+    private sharedDataService: SharedDataService,
+    private readonly router: Router,
+    private el: ElementRef,
     @Inject(DOCUMENT) private document: Document,
+    private zone: NgZone,
     private renderer: Renderer2) { }
 
-  slides: any[] = [
-    { id: 1, image: 'assets/images/NowinTheatres/2018.jpg' }
-  ];; // Array to store the carousel slides
-  currentIndex = 0; // Index of the currently displayed slide
-  private interval: any;
+  currentIndex_ = 0; // Index of the currently displayed slide
+  // private interval_: any;
   private touchStartX: number = 0;
   private isTouchSlide: boolean = false;
   videoUrl: string = "";
@@ -67,13 +68,36 @@ export class CarouselComponent implements OnInit, AfterViewInit {
     reviews: false,
   };
 
+  finalArray: any = [];
 
   activeDropdown: string | null = null;
 
+  slides: any[] = []; // Replace with your image URLs
+  // currentIndex_ = 0;
+  interval_: any;
+
+  startCarousel(): void {
+    this.zone.runOutsideAngular(() => {
+      console.log('sf')
+      this.interval_ = setInterval(() => {
+        console.log('ssf')
+        this.zone.run(() => {
+          console.log('sssf', this.currentIndex_)
+          this.currentIndex_ = (this.currentIndex_ + 1) % this.slides.length;
+        });
+      }, 2000); // Change 3000 to your desired interval_ in milliseconds
+    });
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.interval_);
+  }
+
   ngOnInit() {
-    setTimeout(() => {
-      this.animationState = 'visible';
-    }, 100); // Wait for 100ms before starting the animation
+    console.log("ssjsjhsjs")
+    this.startCarousel();
+
+    // / Wait for 100ms before starting the animation
 
     // this.titleService.setTitle('Home-CinemaKompany');
     // this.metaService.updateTag({ property: 'og:title', content: 'Dynamic Page Title' });
@@ -83,15 +107,14 @@ export class CarouselComponent implements OnInit, AfterViewInit {
     this.movieService.getMoviesDataFromHomeCarousel().subscribe((data: any[]) => {
       data.sort((a, b) => a.id - b.id);
       this.slides = data;
-
-
     });
+    // this.finalArray = this.slides.slice(0,2);
     // this.slides = [
     //   { id: 1, image: 'assets/images/NowinTheatres/2018.jpg' },
     //   { id: 2, image: 'assets/images/NowinTheatres/VOS.jpg' },
     //   { id: 3, image: 'assets/images/NowinTheatres/2018.jpg' },
     // ];
-    // this.startSlideShow()
+
   }
 
   onItemClick(item: string): void {
@@ -101,23 +124,49 @@ export class CarouselComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit() {
+
+    this.startSlideShow()
+
   }
+
   startSlideShow() {
 
+    // this.onFinalArray();
+    setTimeout(() => {
+      this.animationState = 'visible';
+    }, 100); 
 
-    this.interval = setInterval(() => {
-      if (!this.isTouchSlide) {
+    this.zone.runOutsideAngular(() => {
 
+      let i = setInterval(() => {
+        console.log('aaaaaaaaaaaaaaaaaaaa', this.a)
 
-        this.nextSlide();
+        this.a += 10;
+
+      }, 2000)
+
+      if (this.a == 50) {
+        console.log(this.a)
+        clearInterval(i)
       }
-    }, 4000);
+    })
+
+
+    this.zone.runOutsideAngular(() => {
+
+
+      this.interval_ = setInterval(() => {
+        if (!this.isTouchSlide) {
+          this.nextSlide();
+        }
+      }, 4000);
+    })
   }
 
 
 
   previousSlide() {
-    this.currentIndex = (this.currentIndex === 0) ? (this.slides.length - 1) : (this.currentIndex - 1);
+    this.currentIndex_ = (this.currentIndex_ === 0) ? (this.slides.length - 1) : (this.currentIndex_ - 1);
 
   }
 
@@ -153,35 +202,41 @@ export class CarouselComponent implements OnInit, AfterViewInit {
 
 
   prevSlide() {
-    this.currentIndex = (this.currentIndex === 0) ? (this.slides.length - 1) : (this.currentIndex - 1);
+    this.currentIndex_ = (this.currentIndex_ === 0) ? (this.slides.length - 1) : (this.currentIndex_ - 1);
   }
 
   nextSlide() {
-    this.currentIndex = (this.currentIndex === this.slides.length - 1) ? 0 : (this.currentIndex + 1);
+    this.currentIndex_ = (this.currentIndex_ === this.slides.length - 1) ? 0 : (this.currentIndex_ + 1);
+    console.log(this.currentIndex_)
+
   }
 
   clickPrevSlide() {
-    clearInterval(this.interval)
-    this.currentIndex = (this.currentIndex === 0) ? (this.slides.length - 1) : (this.currentIndex - 1);
-    this.interval = setTimeout(() => {
+    clearInterval(this.interval_)
+    this.currentIndex_ = (this.currentIndex_ === 0) ? (this.slides.length - 1) : (this.currentIndex_ - 1);
+    this.interval_ = setTimeout(() => {
       this.prevSlide()
     }, 4000);
   }
 
   clickNextSlide() {
-    clearInterval(this.interval)
+    clearInterval(this.interval_)
 
-    this.currentIndex = (this.currentIndex === this.slides.length - 1) ? 0 : (this.currentIndex + 1);
-    this.interval = setTimeout(() => {
+    this.currentIndex_ = (this.currentIndex_ === this.slides.length - 1) ? 0 : (this.currentIndex_ + 1);
+    this.interval_ = setTimeout(() => {
       this.nextSlide()
     }, 4000);
   }
 
+  onFinalArray() {
+    this.finalArray.push(this.slides[this.currentIndex_ + 1]);
+    console.log("current", this.currentIndex_, this.finalArray)
+  }
 
 
 
   goToSlide(index: number) {
-    this.currentIndex = index;
+    this.currentIndex_ = index;
   }
 
   clickCarouselMovie(movie: any) {
@@ -199,7 +254,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
 
     this.router.navigate(['/about/']);
   }
-  onNewsClick(){
+  onNewsClick() {
 
     this.updateMetaTags()
     window.open('news', '_blank');
@@ -212,7 +267,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
     // window.open('/reviews', '_blank');
     // this.router.navigate(['home-page/reviews']);
     // this.router.navigateByUrl('/reviews', { skipLocationChange: true }).then(() => {
-      // window.open('/reviews', '_blank');
+    // window.open('/reviews', '_blank');
     // });
 
     window.open('reviews', '_blank');

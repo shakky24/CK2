@@ -16,14 +16,14 @@ import { MovieService } from '../services/movies.service';
 })
 export class NewsComponent implements OnInit {
   items: any[] = [];
-  reviewLength: number = 800;
+  reviewLength: number = 200;
 
 
   constructor(
     private titleService: Title,
     private router: Router,
     private meta: Meta,
-    private movieService: MovieService
+    private movieService: MovieService,
   ) {
 
     // this.meta.addTag(
@@ -169,5 +169,7 @@ export class NewsComponent implements OnInit {
   goToHomePage() {
     this.router.navigate(['/home-page/']);
   }
+
+  
 
 }

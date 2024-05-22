@@ -1,6 +1,7 @@
+import { animate, query, stagger, state, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, NgZone } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedDataService } from 'src/app/services/SharedDataService';
 import { MovieService } from 'src/app/services/movies.service';
@@ -14,35 +15,30 @@ import { MovieService } from 'src/app/services/movies.service';
   providers: [MovieService, SharedDataService],
 
 
-  // animations: [
-  //   trigger('imageTransition', [
-  //     state('center', style({
-  //       opacity: 1,
-  //       // transform: 'scale(1)'
-  //     })),
-  //     state('hidden', style({
-  //       opacity: 0,
-  //       transform: 'scale(0.8)'
-  //     })),
-  //     transition('* => *', animate('400ms ease-out'))
-  //   ]),
+  animations: [
 
-  //   trigger('backgroundTransition', [
-  //     state('center', style({
-  //       opacity: 1,
-  //       transform: 'translateX(0%)'
-  //     })),
-  //     state('hidden', style({
-  //       opacity: 0,
-  //       transform: 'translateX(-100%)' // Adjust the translateX value for the left slide
-  //     })),
-  //     transition('* => center', animate('200ms ease-out'))
-  //   ])
+    trigger('slideAnimation', [
+      transition('* <=> *', [
+        query('.carousel-slide', [style({ transform: 'translateX(80%)', opacity: 0 })], { optional: true }),
+        query('.carousel-slide', stagger('0ms', [
+          animate('.6s ease-out', style({ transform: 'translateX(0)', opacity: 1 }))
+        ]), { optional: true })
+      ])
+    ]),
+    trigger('textAnimation', [
+      state('hidden', style({ opacity: 0, transform: 'translateX(-80px)' })),
+      state('visible', style({ opacity: 1, transform: 'translateX(0)' })),
+      transition('hidden => visible', animate('400ms')),
+    ]),
+    trigger('overlayAnimation', [
+      state('hidden', style({ opacity: 0, transform: 'translateX(-100px)' })),
+      state('visible', style({ opacity: 1, transform: 'translateX(0)' })),
+      transition('hidden => visible', animate('400ms 800ms')), // Delay the overlay animation by 1 second
+    ]),
 
 
 
-
-  // ]
+  ]
 
 })
 export class ImageCarouselComponent {
@@ -68,7 +64,7 @@ export class ImageCarouselComponent {
   private touchStartX: number = 0;
   private isTouchSlide: boolean = false;
 
-  constructor(private movieService: MovieService) {
+  constructor(private movieService: MovieService, private zone: NgZone) {
 
 
     this.movieService.getMoviesDataFromAdvertisement().subscribe((ele: any[]) => {
@@ -89,7 +85,7 @@ export class ImageCarouselComponent {
     }, 100); // Wait for 100ms before starting the animation
 
 
-    // this.startSlideShow()
+    this.startSlideShow();
     console.log("component loaded")
 
 
@@ -97,15 +93,20 @@ export class ImageCarouselComponent {
 
 
   startSlideShow() {
+    this.zone.runOutsideAngular(() => {
 
+      console.log("zonee1")
+      this.interval = setInterval(() => {
+        if (!this.isTouchSlide) {
+          console.log("zonee2")
 
-    this.interval = setInterval(() => {
-      if (!this.isTouchSlide) {
-
-
-        this.nextSlide();
-      }
-    }, 4000);
+          this.zone.run(() => {
+            this.nextSlide();
+          }
+          )
+        }
+      }, 4000);
+    })
   }
 
   private stopSlideShow() {
@@ -181,7 +182,7 @@ export class ImageCarouselComponent {
     this.currentIndex = index;
   }
 
-  ngOnChanges(){
+  ngOnChanges() {
     console.log("changes")
     this.currentImage = "https://cinemakompany.com/" + this.slides[this.currentIndex].image;
     console.log(this.currentImage)

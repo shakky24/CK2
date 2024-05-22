@@ -17,7 +17,7 @@ import { MovieService } from 'src/app/services/movies.service';
 })
 export class ReviewComponent {
   items: any[] = [];
-  reviewLength: number = 800;
+  reviewLength: number = 200;
 
 
   constructor(private titleService: Title,private sharedDataService: SharedDataService, private movieService: MovieService, private readonly router: Router) {

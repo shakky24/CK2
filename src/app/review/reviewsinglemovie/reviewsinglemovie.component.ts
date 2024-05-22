@@ -5,6 +5,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { SharedDataService } from 'src/app/services/SharedDataService';
+import { MovieService } from 'src/app/services/movies.service';
 
 @Component({
   selector: 'app-reviewsinglemovie',
@@ -12,7 +13,7 @@ import { SharedDataService } from 'src/app/services/SharedDataService';
   styleUrls: ['./reviewsinglemovie.component.scss'],
   standalone: true,
   imports: [CommonModule, HttpClientModule],
-  providers: [ SharedDataService],
+  providers: [SharedDataService, MovieService],
 })
 export class ReviewsinglemovieComponent implements OnInit {
   imageSource = '';
@@ -30,6 +31,8 @@ export class ReviewsinglemovieComponent implements OnInit {
   paragrapgh6: string = '';
   paragrapgh7: string = '';
   reviewLength: number = 1000;
+  items: any[] = [];
+  id: any;
 
   constructor(
     private sharedDataService: SharedDataService,
@@ -37,19 +40,22 @@ export class ReviewsinglemovieComponent implements OnInit {
     private route: ActivatedRoute,
     private metaService: Meta,
     private titleService: Title,
-    private imageCompress: NgxImageCompressService
+    private imageCompress: NgxImageCompressService,
+    private movieService: MovieService
   ) {
-    
+
   }
 
   ngOnInit(): void {
+    console.log("first")
     this.metaService.updateTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
 
     this.route.params.subscribe(params => {
 
-      const id = params['movie_id'];
-      this.loadMovieData(id);
+      this.id = params['movie_id'];
+      this.loadMovieData(this.id);
     });
+    this.fetchCarouselData()
   }
 
 
@@ -78,7 +84,7 @@ export class ReviewsinglemovieComponent implements OnInit {
         this.metaService.updateTag({ property: 'og:title', content: `${data?.movieName} Movie Review From CinemaKompany` });
         this.metaService.updateTag({ property: 'og:description', content: data?.review });
         const imageURL = `https://cinemakompany.com/assets/images/reviews/${data?.movieName}.jpg`;
-  
+
         // Compress and update image
         this.compressAndUpdateImage(imageURL);
         this.imageSource = data?.image;
@@ -140,4 +146,24 @@ export class ReviewsinglemovieComponent implements OnInit {
       reader.onerror = error => reject(error);
     });
   }
+
+  fetchCarouselData() {
+    this.movieService.getMovieReviws().subscribe((data: any[]) => {
+      data.sort((a, b) => a.id - b.id);
+      let counter = 0;
+      this.items = data.filter(doc => {
+        counter += 1;
+        if (doc.id != this.id && (counter >= 1 && counter <= data.length - 1)) { return doc }
+      })
+    });
+  }
+
+  onReviewClick(movie: any) {
+    this.router.navigate([]).then(res => {
+      window.open(`/reviews/${movie?.id}`, '_blank');
+    });
+    this.sharedDataService.updateMovieDataFromReview(movie);
+    this.fetchCarouselData();
+  }
+
 }
