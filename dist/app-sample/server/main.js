@@ -224,7 +224,7 @@ class AboutComponent {
     selectors: [["app-about"]],
     standalone: true,
     features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵStandaloneFeature"]],
-    decls: 25,
+    decls: 28,
     vars: 0,
     consts: [[1, "about-us-container"], [2, "display", "grid", "justify-content", "end"], [2, "text-align", "center", "font-family", "Jost", "font-size", "1.5rem", "cursor", "pointer", ";padding", ".8rem", "border-radius", "12px", "display", "grid", "background-color", "#333", "justify-content", "start", 3, "click"], ["src", "assets/images/au.jpg", "alt", "", 2, "height", "100%", "width", "100%", "border-radius", "12px", "margin", ".4rem 0"], [1, "main-content"], [1, "about-us-section"], [2, "color", "rgb(154, 153, 153)", ";text-align", "left", "font-size", "1rem", "line-height", "1.5", "font-weight", "300", "letter-spacing", ".5px"], [2, "display", "grid", "color", "rgb(154, 153, 153)", "margin", "1rem 1rem", "text-align", "left", "font-size", "1rem", "line-height", "1.5", "font-weight", "300", "letter-spacing", ".4px"]],
     template: function AboutComponent_Template(rf, ctx) {
@@ -241,17 +241,19 @@ class AboutComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9, "About Us");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "p", 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, " Welcome to Cinema Kompany, a trailblazing venture that commenced its cinematic journey in 2011 under the visionary leadership of founder Harikrishnan R and Creative Director & Co-Founder Avinash G Nair. Formerly known as BOOM Cinemaz, our brand garnered acclaim for its successful promotion of 18+ movies in both Malayalam and Tamil.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "Welcome to Cinema Kompany, a cinematic powerhouse founded in 2011 by Harikrishnan R and Creative Director Avinash G Nair. Formerly known as BOOM Cinemaz, our brand has earned widespread acclaim for successfully promoting over 18 films in Malayalam and Tamil. ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "p", 7);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](13, "br")(14, "br");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](15, " In a strategic move that marked a pivotal moment in our evolution, BOOM Cinemaz seamlessly merged with DIB Global's sister concern, DIB Global Entertainments, in 2023. This strategic alliance prompted a rebranding initiative, giving rise to the establishment of Cinema Kompany. As an integral component of DIB Global Entertainments, we stand committed to redefining the entertainment landscape. ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](15, " In 2024, BOOM Cinemaz took a bold step forward by merging with DIB Global's sister concern, DIB Global Entertainments. This strategic alliance sparked a transformative rebranding initiative, giving birth to Cinema Kompany. As an essential part of DIB Global Entertainments, we are dedicated to revolutionizing the entertainment landscape. ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](16, "br")(17, "br");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](18, " Looking towards the future, Cinema Kompany is poised to make a significant impact in the realm of OTT platforms. We have strategic plans to introduce captivating content on a more intimate scale, anticipating the evolving preferences of our discerning audience. We are pleased to announce the impending launch of our YouTube entertainment channel by the end of this year. This channel will serve as a dynamic hub for short films, unplugged versions, and engaging content, curated under the creative vision of the Award-winning writer, Arun Sukumaran Nair. ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](18, " Cinema Kompany is set to make waves in the OTT platform space, with exciting plans to deliver captivating, intimate content that resonates with our discerning audience. We're thrilled to announce the upcoming launch of our YouTube entertainment channel by mid-next year. This channel will be a vibrant hub for short films, unplugged performances, and engaging content, all curated under the creative direction of award-winning writer Arun Sukumaran Nair. ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](19, "br")(20, "br");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](21, " DIB Global, steering the course through Cinema Kompany, not only signifies a name associated with cinematic excellence but also stands as a formidable presence in movie charting for theaters in Kollam. Our operations are expanding, reaching across the dynamic landscape of Kerala. ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](21, " DIB Global, through Cinema Kompany, is not only synonymous with cinematic excellence but also a dominant force in movie charting for theaters in Kollam. Our operations are expanding, reaching every corner of Kerala\u2019s dynamic entertainment landscape. ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](22, "br")(23, "br");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](24, " Embark on this journey with us as we continue to shape the future of entertainment, seamlessly blending creativity, innovation, and an unwavering passion for storytelling. Welcome to Cinema Kompany, where every frame narrates a compelling tale with the utmost professionalism and dedication. ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](24, " Join us as we continue to shape the future of entertainment, blending creativity, innovation, and an unwavering passion for storytelling. Welcome to Cinema Kompany, where every frame tells a compelling story with unmatched professionalism and dedication. ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](25, "br")(26, "br");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](27, " Contact us @ info@cinemakompany.com ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
       }
     },
