@@ -114,13 +114,6 @@
 
 }
 
-.image {
-  // position: relative;
-  height: 100%;
-  width: 100%;
-  // opacity: .2;
-}
-
 
 .dot-indicators {
   display: flex;
@@ -261,4 +254,12 @@
 
 .next-image {
   top: 72%;
+}
+
+
+.image {
+  // position: relative;
+  height: 35rem;
+  width: 100%;
+  // opacity: .2;
 }
