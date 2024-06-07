@@ -13,7 +13,7 @@ import { TopRegionalShowsComponent } from './top-regional-shows/top-regional-sho
   styleUrls: ['./home-page.component.scss'],
   standalone: true,
   imports: [NowInOttComponent, ImageCarouselComponent, HttpClientModule, TopRegionalShowsComponent, NowInTheatresComponent, CarouselComponent],
-  providers:[HttpClient]
+  providers: [HttpClient]
 })
 export class HomePageComponent {
 
@@ -24,11 +24,11 @@ export class HomePageComponent {
   ngOnInit() {
     this.meta.addTag({
       name: 'description',
-      content: 'Cinema Kompany'
+      content: 'Stay updated with the latest entertainment news, in-depth movie reviews, and box office updates at Cinema Kompany. Get exclusive content and insights on all your favorite films.'
     }, true);
     this.meta.addTag({
       name: 'title',
-      content: 'Cinema Kompany'
+      content: 'Cinema Kompany: Entertainment News, Movie Reviews, Box Office'
     }, true);
     this.meta.addTag({
       name: 'image',

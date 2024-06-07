@@ -1089,11 +1089,11 @@ class HomePageComponent {
   ngOnInit() {
     this.meta.addTag({
       name: 'description',
-      content: 'Cinema Kompany'
+      content: 'Stay updated with the latest entertainment news, in-depth movie reviews, and box office updates at Cinema Kompany. Get exclusive content and insights on all your favorite films.'
     }, true);
     this.meta.addTag({
       name: 'title',
-      content: 'Cinema Kompany'
+      content: 'Cinema Kompany: Entertainment News, Movie Reviews, Box Office'
     }, true);
     this.meta.addTag({
       name: 'image',
@@ -2554,7 +2554,11 @@ class SingleNewsComponent {
           this.news = ele.news;
           console.log('sss', ele);
           this.meta.addTag({
-            name: 'description',
+            name: 'image',
+            content: `https://craftangelsbysita.com/${ele.image}`
+          });
+          this.meta.addTag({
+            name: 'title',
             content: ele.description
           });
           this.meta.addTag({
@@ -2563,22 +2567,6 @@ class SingleNewsComponent {
           });
           this.meta.addTag({
             name: 'title',
-            content: ele.movieName
-          });
-          this.meta.addTag({
-            name: 'description',
-            content: ele.description
-          });
-          this.meta.addTag({
-            name: 'image',
-            content: `https://craftangelsbysita.com/${ele.image}`
-          });
-          this.meta.addTag({
-            name: 'title',
-            content: ele.movieName
-          });
-          this.meta.addTag({
-            property: 'og:description',
             content: ele.description
           });
           this.meta.addTag({
@@ -2587,10 +2575,6 @@ class SingleNewsComponent {
           });
           this.meta.addTag({
             property: 'og:title',
-            content: ele.movieName
-          });
-          this.meta.updateTag({
-            property: 'og:description',
             content: ele.description
           });
           this.meta.updateTag({
@@ -2599,9 +2583,9 @@ class SingleNewsComponent {
           });
           this.meta.updateTag({
             property: 'og:title',
-            content: ele.movieName
+            content: ele.description
           });
-          this.titleService.setTitle(`${ele?.movieName} News`);
+          this.titleService.setTitle(`${ele?.description}`);
           // console.log("updated", this.meta.getTag("'property=og:description'"))
         }
       });
@@ -3252,14 +3236,10 @@ class ReviewsinglemovieComponent {
     this.movieService.getMovieReviws().subscribe(doc => {
       doc.map(data => {
         if (data.id == this.id) {
-          this.titleService.setTitle(`${data?.movieName} News`);
+          this.titleService.setTitle(`${data?.description}`);
           this.metaService.updateTag({
             property: 'og:title',
-            content: `${data?.movieName} Movie News From CinemaKompany`
-          });
-          this.metaService.updateTag({
-            property: 'og:description',
-            content: data?.description
+            content: `${data?.description}`
           });
           this.metaService.updateTag({
             property: 'og:image',
