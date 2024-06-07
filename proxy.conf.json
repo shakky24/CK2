@@ -1,6 +1,6 @@
 {
     "/api": {
-        "target": "https://cinemakompany.com",
+        "target": "https://craftangelsbysita.com",
         "secure": true,
         "changeOrigin": true,
         "pathRewrite": {

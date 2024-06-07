@@ -48,7 +48,7 @@ export class ReviewsinglemovieComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("first")
-    // this.metaService.updateTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
+    // this.metaService.updateTag({ property: 'og:image', content: 'https://craftangelsbysita.com/assets/images/reviews/Alone-ott.jpg' });
 
     this.route.params.subscribe(params => {
 
@@ -62,7 +62,7 @@ export class ReviewsinglemovieComponent implements OnInit {
           this.titleService.setTitle(`${data?.movieName} News`);
           this.metaService.updateTag({ property: 'og:title', content: `${data?.movieName} Movie News From CinemaKompany` });
           this.metaService.updateTag({ property: 'og:description', content: data?.description });
-          this.metaService.updateTag({ property: 'og:image', content: `https://cinemakompany.com/${data.image}` });
+          this.metaService.updateTag({ property: 'og:image', content: `https://craftangelsbysita.com/${data.image}` });
          }
       })
     })
@@ -94,7 +94,7 @@ export class ReviewsinglemovieComponent implements OnInit {
 
 
 
-        const imageURL = `https://cinemakompany.com/assets/images/reviews/${data?.movieName}.jpg`;
+        const imageURL = `https://craftangelsbysita.com/assets/images/reviews/${data?.movieName}.jpg`;
 
 
         // Compress and update image

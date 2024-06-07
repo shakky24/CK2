@@ -328,7 +328,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
     const staticData = {
       title: 'App component',
       description: 'app componentr description',
-      imageUrl: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg',
+      imageUrl: 'https://craftangelsbysita.com/assets/images/reviews/Alone-ott.jpg',
       url: 'https://example.com/static-url'
     };
     // Update Open Graph meta tags dynamically using dynamicContent

@@ -72,7 +72,7 @@ export class ImageCarouselComponent {
       console.log(ele);
       this.slides = ele;
       console.log(this.slides)
-      this.currentImage = "https://cinemakompany.com/" + this.slides[this.currentIndex].image;
+      this.currentImage = "https://craftangelsbysita.com/" + this.slides[this.currentIndex].image;
       console.log(this.currentImage)
     });
   }
@@ -184,28 +184,28 @@ export class ImageCarouselComponent {
 
   ngOnChanges() {
     console.log("changes")
-    this.currentImage = "https://cinemakompany.com/" + this.slides[this.currentIndex].image;
+    this.currentImage = "https://craftangelsbysita.com/" + this.slides[this.currentIndex].image;
     console.log(this.currentImage)
   }
 
 
   getCurrentImage(): string {
-    console.log("this.slides", this.slides, this.currentIndex, "https://cinemakompany.com/" + this.slides[this.currentIndex].image)
-    return "https://cinemakompany.com/" + this.slides[this.currentIndex].image;
+    console.log("this.slides", this.slides, this.currentIndex, "https://craftangelsbysita.com/" + this.slides[this.currentIndex].image)
+    return "https://craftangelsbysita.com/" + this.slides[this.currentIndex].image;
   }
 
   getNextImage(): string {
     console.log("this.slides", this.slides)
 
     const nextIndex = (this.currentIndex + 1) % this.slides.length;
-    return "https://cinemakompany.com/" + this.slides[nextIndex].image;
+    return "https://craftangelsbysita.com/" + this.slides[nextIndex].image;
   }
 
   getPreviousImage(): string {
     console.log("this.slides", this.slides)
 
     const previousIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
-    return "https://cinemakompany.com/" + this.slides[previousIndex].image;
+    return "https://craftangelsbysita.com/" + this.slides[previousIndex].image;
   }
 
   handleTopButtonClick(): void {

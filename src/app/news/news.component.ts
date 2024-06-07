@@ -127,7 +127,7 @@ export class NewsComponent implements OnInit {
     // this.items = NEWS;
     this.movieService.getMovieNews().subscribe((ele: any) => {
       ele.sort((a: any, b: any) => a.id - b.id);
-      let image_url = `https://cinemakompany.com/${ele.image}`;
+      let image_url = `https://craftangelsbysita.com/${ele.image}`;
       ele['image'] = image_url;
       console.log(ele);
       this.items = ele;

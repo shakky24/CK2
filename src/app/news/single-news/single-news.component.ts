@@ -55,8 +55,8 @@ export class SingleNewsComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       console.log(params)
-      // const imageURL = `https://cinemakompany.com/assets/images/reviews/${movieName}.jpg`;
-      // this.metaService.updateTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
+      // const imageURL = `https://craftangelsbysita.com/assets/images/reviews/${movieName}.jpg`;
+      // this.metaService.updateTag({ property: 'og:image', content: 'https://craftangelsbysita.com/assets/images/reviews/Alone-ott.jpg' });
       this.id = params['movie_id'];
       this.loadMovieData(this.id);
       console.log(this.title)
@@ -72,17 +72,17 @@ export class SingleNewsComponent implements OnInit {
           this.news = ele.news;
           console.log('sss', ele);
           this.meta.addTag({ name: 'description', content: ele.description });
-          this.meta.addTag({ name: 'image', content: `https://cinemakompany.com/${ele.image}` });
+          this.meta.addTag({ name: 'image', content: `https://craftangelsbysita.com/${ele.image}` });
           this.meta.addTag({ name: 'title', content: ele.movieName });
           this.meta.addTag({ name: 'description', content: ele.description });
-          this.meta.addTag({ name: 'image', content: `https://cinemakompany.com/${ele.image}` });
+          this.meta.addTag({ name: 'image', content: `https://craftangelsbysita.com/${ele.image}` });
           this.meta.addTag({ name: 'title', content: ele.movieName });
 
           this.meta.addTag({ property: 'og:description', content: ele.description });
           this.meta.addTag({ property: 'og:image', content: ele.image });
           this.meta.addTag({ property: 'og:title', content: ele.movieName });
           this.meta.updateTag({ property: 'og:description', content: ele.description });
-          this.meta.updateTag({ property: 'og:image', content: `https://cinemakompany.com/${ele.image}` });
+          this.meta.updateTag({ property: 'og:image', content: `https://craftangelsbysita.com/${ele.image}` });
           this.meta.updateTag({ property: 'og:title', content: ele.movieName });
           this.titleService.setTitle(`${ele?.movieName} News`);
 
@@ -98,27 +98,27 @@ export class SingleNewsComponent implements OnInit {
     //     this.description = ele.description;
     //     this.imageSource = ele.image
     //     this.meta.addTag({ name: 'description', content: ele.description });
-    //     this.meta.addTag({ name: 'image', content: `https://cinemakompany.com/${ele.image}` });
+    //     this.meta.addTag({ name: 'image', content: `https://craftangelsbysita.com/${ele.image}` });
     //     this.meta.addTag({ name: 'title', content: ele.movieName });
     //     this.meta.addTag({ name: 'description', content: ele.description });
-    //     this.meta.addTag({ name: 'image', content: `https://cinemakompany.com/${ele.image}` });
+    //     this.meta.addTag({ name: 'image', content: `https://craftangelsbysita.com/${ele.image}` });
     //     this.meta.addTag({ name: 'title', content: ele.movieName });
 
     //     this.meta.addTag({ property: 'og:description', content: ele.description });
     //     this.meta.addTag({ property: 'og:image', content: ele.image });
     //     this.meta.addTag({ property: 'og:title', content: ele.movieName });
     //     this.meta.updateTag({ property: 'og:description', content: ele.description });
-    //     this.meta.updateTag({ property: 'og:image', content: `https://cinemakompany.com/${ele.image}` });
+    //     this.meta.updateTag({ property: 'og:image', content: `https://craftangelsbysita.com/${ele.image}` });
     //     this.meta.updateTag({ property: 'og:title', content: ele.movieName });
     //     // console.log("updated", this.meta.getTag("'property=og:description'"))
     //   }
     // })
     // this.meta.addTag({ property: 'og:description', content: 'hello welcome' });
-    // this.meta.addTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
-    // this.meta.addTag({ property: 'og:url', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
+    // this.meta.addTag({ property: 'og:image', content: 'https://craftangelsbysita.com/assets/images/reviews/Alone-ott.jpg' });
+    // this.meta.addTag({ property: 'og:url', content: 'https://craftangelsbysita.com/assets/images/reviews/Alone-ott.jpg' });
     // this.meta.updateTag({ property: 'og:description', content: 'hello welcome' });
-    // this.meta.updateTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
-    // this.meta.updateTag({ property: 'og:url', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
+    // this.meta.updateTag({ property: 'og:image', content: 'https://craftangelsbysita.com/assets/images/reviews/Alone-ott.jpg' });
+    // this.meta.updateTag({ property: 'og:url', content: 'https://craftangelsbysita.com/assets/images/reviews/Alone-ott.jpg' });
   }
 
   ngOnInit(): void {
@@ -154,11 +154,11 @@ export class SingleNewsComponent implements OnInit {
 
 
 
-    // this.metaService.updateTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' });
+    // this.metaService.updateTag({ property: 'og:image', content: 'https://craftangelsbysita.com/assets/images/reviews/Alone-ott.jpg' });
 
-    // this.imageSource = 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg';
+    // this.imageSource = 'https://craftangelsbysita.com/assets/images/reviews/Alone-ott.jpg';
     // this.updateOgImageMetaTag();
-    // // this.metaService.addTag({ property: 'og:image', content: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg' }, true);
+    // // this.metaService.addTag({ property: 'og:image', content: 'https://craftangelsbysita.com/assets/images/reviews/Alone-ott.jpg' }, true);
 
 
   }
@@ -192,7 +192,7 @@ export class SingleNewsComponent implements OnInit {
         // // this.titleService.setTitle(`${data?.movieName} Review`);
         // // this.metaService.updateTag({ property: 'og:title', content: `${data?.movieName} Movie Review From CinemaKompany` });
         // // this.metaService.updateTag({ property: 'og:description', content: data?.review });
-        // // const imageURL = `https://cinemakompany.com/assets/images/reviews/${data?.movieName}.jpg`;
+        // // const imageURL = `https://craftangelsbysita.com/assets/images/reviews/${data?.movieName}.jpg`;
 
         // // Compress and update image
         // this.compressAndUpdateImage(imageURL);
@@ -223,7 +223,7 @@ export class SingleNewsComponent implements OnInit {
     const dynamicContent = {
       title: 'Dynamic Title',
       description: 'Dynamic Description',
-      imageUrl: 'https://cinemakompany.com/assets/images/reviews/${data?.movieName}.jpg',
+      imageUrl: 'https://craftangelsbysita.com/assets/images/reviews/${data?.movieName}.jpg',
       url: 'https://example.com/content/1' // Replace '1' with the actual content ID
     };
 
@@ -246,7 +246,7 @@ export class SingleNewsComponent implements OnInit {
   dynamicContent = {
     title: 'Review Cinema Kompany',
     description: 'Dynamic Description',
-    imageUrl: 'https://cinemakompany.com/assets/images/reviews/Alone-ott.jpg',
+    imageUrl: 'https://craftangelsbysita.com/assets/images/reviews/Alone-ott.jpg',
     url: 'https://example.com/content/1' // Replace '1' with the actual content ID
   };
 
