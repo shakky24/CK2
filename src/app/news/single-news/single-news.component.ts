@@ -71,20 +71,16 @@ export class SingleNewsComponent implements OnInit {
           this.imageSource = ele.image;
           this.news = ele.news;
           console.log('sss', ele);
-          this.meta.addTag({ name: 'description', content: ele.description });
           this.meta.addTag({ name: 'image', content: `https://craftangelsbysita.com/${ele.image}` });
-          this.meta.addTag({ name: 'title', content: ele.movieName });
-          this.meta.addTag({ name: 'description', content: ele.description });
+          this.meta.addTag({ name: 'title', content: ele.description });
           this.meta.addTag({ name: 'image', content: `https://craftangelsbysita.com/${ele.image}` });
-          this.meta.addTag({ name: 'title', content: ele.movieName });
+          this.meta.addTag({ name: 'title', content: ele.description });
 
-          this.meta.addTag({ property: 'og:description', content: ele.description });
           this.meta.addTag({ property: 'og:image', content: ele.image });
-          this.meta.addTag({ property: 'og:title', content: ele.movieName });
-          this.meta.updateTag({ property: 'og:description', content: ele.description });
+          this.meta.addTag({ property: 'og:title', content: ele.description });
           this.meta.updateTag({ property: 'og:image', content: `https://craftangelsbysita.com/${ele.image}` });
-          this.meta.updateTag({ property: 'og:title', content: ele.movieName });
-          this.titleService.setTitle(`${ele?.movieName} News`);
+          this.meta.updateTag({ property: 'og:title', content: ele.description });
+          this.titleService.setTitle(`${ele?.description}`);
 
           // console.log("updated", this.meta.getTag("'property=og:description'"))
         }

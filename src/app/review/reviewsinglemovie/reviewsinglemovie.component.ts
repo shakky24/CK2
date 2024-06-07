@@ -59,9 +59,8 @@ export class ReviewsinglemovieComponent implements OnInit {
     this.movieService.getMovieReviws().subscribe((doc: any) => {
       doc.map((data: any) => {
         if (data.id == this.id) {
-          this.titleService.setTitle(`${data?.movieName} News`);
-          this.metaService.updateTag({ property: 'og:title', content: `${data?.movieName} Movie News From CinemaKompany` });
-          this.metaService.updateTag({ property: 'og:description', content: data?.description });
+          this.titleService.setTitle(`${data?.description}`);
+          this.metaService.updateTag({ property: 'og:title', content: `${data?.description}` });
           this.metaService.updateTag({ property: 'og:image', content: `https://craftangelsbysita.com/${data.image}` });
          }
       })
