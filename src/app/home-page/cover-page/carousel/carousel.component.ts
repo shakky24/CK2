@@ -82,10 +82,10 @@ export class CarouselComponent implements OnInit, AfterViewInit {
       this.interval_ = setInterval(() => {
         console.log('ssf')
         this.zone.run(() => {
-          console.log('sssf', this.currentIndex_)
-          this.currentIndex_ = (this.currentIndex_ + 1) % this.slides.length;
+        
+          this.currentIndex_ = (this.currentIndex_ ) % this.slides.length;
         });
-      }, 2000); // Change 3000 to your desired interval_ in milliseconds
+      }, 1000); // Change 3000 to your desired interval_ in milliseconds
     });
   }
 
@@ -107,6 +107,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
     this.movieService.getMoviesDataFromHomeCarousel().subscribe((data: any[]) => {
       data.sort((a, b) => a.id - b.id);
       this.slides = data;
+      console.log(this.slides)
     });
     // this.finalArray = this.slides.slice(0,2);
     // this.slides = [
@@ -206,8 +207,8 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   }
 
   nextSlide() {
-    this.currentIndex_ = (this.currentIndex_ === this.slides.length - 1) ? 0 : (this.currentIndex_ + 1);
-    console.log(this.currentIndex_)
+    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',this.currentIndex_)
+    this.currentIndex_ = (this.currentIndex_ === this.slides.length -1 ) ? 0 : (this.currentIndex_ + 1);
 
   }
 

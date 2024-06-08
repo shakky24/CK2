@@ -77,36 +77,6 @@
 }
 
 
-@media screen and (min-width :740px) {
-
-
-
-  .main {
-
-    display: grid;
-    height: 100% !important;
-    position: relative;
-    // margin: .4rem;
-  }
-
-  .arrowButtonsLeft {
-
-    height: 2.5rem;
-    width: 2.5rem;
-    font-size: 2.5rem;
-  }
-
-  .arrowButtonsRight {
-
-    height: 2.5rem;
-    width: 2.5rem;
-    font-size: 2.5rem;
-  }
-
-
-
-
-}
 
 
 .headerNames {
@@ -259,7 +229,50 @@
 
 .image {
   // position: relative;
-  height: 35rem;
-  width: 100%;
+  object-fit: contain;
+  width: 87%;
   // opacity: .2;
+  
+}
+
+
+@media screen and (min-width: 740px) {
+  .image{
+    height: 26rem;
+    width: 97%;
+    object-fit: cover;
+  }
+
+}
+
+@media screen and (min-width :740px) {
+
+
+
+
+  .main {
+
+    display: grid;
+    height: 100% !important;
+    position: relative;
+    // margin: .4rem;
+  }
+
+  .arrowButtonsLeft {
+
+    height: 2.5rem;
+    width: 2.5rem;
+    font-size: 2.5rem;
+  }
+
+  .arrowButtonsRight {
+
+    height: 2.5rem;
+    width: 2.5rem;
+    font-size: 2.5rem;
+  }
+
+
+
+
 }
