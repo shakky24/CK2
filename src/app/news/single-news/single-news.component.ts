@@ -58,6 +58,7 @@ export class SingleNewsComponent implements OnInit {
       // const imageURL = `https://craftangelsbysita.com/assets/images/reviews/${movieName}.jpg`;
       // this.metaService.updateTag({ property: 'og:image', content: 'https://craftangelsbysita.com/assets/images/reviews/Alone-ott.jpg' });
       this.id = params['movie_id'];
+      console.log()
       this.loadMovieData(this.id);
       console.log(this.title)
     });
@@ -81,6 +82,19 @@ export class SingleNewsComponent implements OnInit {
           this.meta.updateTag({ property: 'og:image', content: `https://craftangelsbysita.com/${ele.image}` });
           this.meta.updateTag({ property: 'og:title', content: ele.description });
           this.titleService.setTitle(`${ele?.description}`);
+          let data = ele;
+          this.title = data?.title;
+          this.rating = data?.rating;
+          this.movieName = data?.movieName;
+          this.verdict = data?.verdict;
+          this.paragrapgh2 = data?.paragrapgh2;
+          this.paragrapgh3 = data?.paragrapgh3;
+          this.paragrapgh4 = data?.paragrapgh4;
+          this.paragrapgh5 = data?.paragrapgh5;
+          this.paragrapgh6 = data?.paragrapgh6;
+          this.paragrapgh7 = data?.paragrapgh7;
+          this.description = data?.description;
+          this.news = data?.news;
 
           // console.log("updated", this.meta.getTag("'property=og:description'"))
         }

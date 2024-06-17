@@ -53,16 +53,38 @@ export class ReviewsinglemovieComponent implements OnInit {
     this.route.params.subscribe(params => {
 
       this.id = params['movie_id'];
+      console.log("paramsssssss", params)
       this.loadMovieData(this.id);
     });
 
     this.movieService.getMovieReviws().subscribe((doc: any) => {
       doc.map((data: any) => {
+
+        console.log(data)
         if (data.id == this.id) {
           this.titleService.setTitle(`${data?.description}`);
           this.metaService.updateTag({ property: 'og:title', content: `${data?.description}` });
           this.metaService.updateTag({ property: 'og:image', content: `https://craftangelsbysita.com/${data.image}` });
+          this.title = data?.title;
+          this.rating = data?.rating;
+          this.movieName = data?.movieName;
+          this.verdict = data?.verdict;
+          this.paragrapgh2 = data?.paragrapgh2;
+          this.paragrapgh3 = data?.paragrapgh3;
+          this.paragrapgh4 = data?.paragrapgh4;
+          this.paragrapgh5 = data?.paragrapgh5;
+          this.paragrapgh6 = data?.paragrapgh6;
+          this.paragrapgh7 = data?.paragrapgh7;
+          this.description = data?.description;
+          this.review = data?.review;
+          const imageURL = `https://craftangelsbysita.com/${data?.image}`;
+
+
+        // Compress and update image
+        this.compressAndUpdateImage(imageURL);
+        this.imageSource = data?.image;
          }
+         console.log(this.description)
       })
     })
 
@@ -105,18 +127,18 @@ export class ReviewsinglemovieComponent implements OnInit {
 
 
 
-        this.title = data?.title;
-        this.rating = data?.rating;
-        this.movieName = data?.movieName;
-        this.verdict = data?.verdict;
-        this.paragrapgh2 = data?.paragrapgh2;
-        this.paragrapgh3 = data?.paragrapgh3;
-        this.paragrapgh4 = data?.paragrapgh4;
-        this.paragrapgh5 = data?.paragrapgh5;
-        this.paragrapgh6 = data?.paragrapgh6;
-        this.paragrapgh7 = data?.paragrapgh7;
-        this.description = data?.description;
-        this.review = data?.review;
+        // this.title = data?.title;
+        // this.rating = data?.rating;
+        // this.movieName = data?.movieName;
+        // this.verdict = data?.verdict;
+        // this.paragrapgh2 = data?.paragrapgh2;
+        // this.paragrapgh3 = data?.paragrapgh3;
+        // this.paragrapgh4 = data?.paragrapgh4;
+        // this.paragrapgh5 = data?.paragrapgh5;
+        // this.paragrapgh6 = data?.paragrapgh6;
+        // this.paragrapgh7 = data?.paragrapgh7;
+        // this.description = data?.description;
+        // this.review = data?.review;
       }
     }
   }
