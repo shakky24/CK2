@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SplitParagraphPipe } from '../pipes/split-paragraph.pipe';
@@ -11,7 +12,7 @@ import { MovieService } from '../services/movies.service';
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.scss'],
   standalone: true,
-  imports: [CommonModule, SplitParagraphPipe, HttpClientModule],
+  imports: [CommonModule, SplitParagraphPipe, HttpClientModule, MatIconModule],
   providers:[MovieService, HttpClient]
 })
 export class NewsComponent implements OnInit {
@@ -167,7 +168,7 @@ export class NewsComponent implements OnInit {
 
 
   goToHomePage() {
-    this.router.navigate(['/home-page/']);
+    this.router.navigate(['']);
   }
 
   

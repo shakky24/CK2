@@ -32,7 +32,7 @@
 <div class="carousel-wrapper">
     <div *ngFor="let item of items" (click)="onNewsClick(item)">
         <img style="justify-self: center;" src="https://craftangelsbysita.com/{{item.image}}" alt="Image" class="carousel-image">
-        <p style="font-family: Jost; font-size:1.2rem; font-weight: 400;">{{item.description}}</p>
+        <p style="font-family: Jost; font-size:1.2rem; font-weight: 400;" class="carousel-image"> {{item.description}}</p>
     </div>
 </div>
 

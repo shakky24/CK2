@@ -6,15 +6,24 @@
   // margin: .4rem;
 }
 
+.image {
+  // position: relative;
+  // height: 100%;
+  height: 85vh;
+  width: 100%;
+  // opacity: .2;
+}
+
+
 .header {
   position: absolute;
   right: 4%;
   z-index: 999;
-  top: 5%;
+  top: 2.5%;
   display: grid;
   grid-auto-flow: column;
-  font-family: 'Jost', sans-serif;
-  font-size: .5rem;
+  font-family: "Jost", sans-serif;
+  font-size: 0.4rem;
 
 }
 
@@ -194,10 +203,29 @@
 }
 
 
+@media screen and (max-width :500px) {
+
+  .image {
+    // position: relative;
+    // height: 100%;
+    height: 20rem;
+    width: 100%;
+    // opacity: .2;
+  }
+}
 
 
 
 @media screen and (min-width :740px) {
+
+  .image {
+    // position: relative;
+    // height: 100%;
+    height: 85vh;
+    width: 100%;
+    // opacity: .2;
+  }
+  
 
   .header {
     right: 4%;
@@ -350,7 +378,7 @@
     grid-auto-flow: column;
     right: 0;
     z-index: 100;
-    font-size: 1.4rem;
+    // font-size: 1.4rem;
     font-weight: 800;
     text-decoration: linear-gradient(to left, #f82424, #000000);
     background-clip: text;
@@ -400,12 +428,6 @@
 
 }
 
-.image {
-  // position: relative;
-  height: 100%;
-  width: 100%;
-  // opacity: .2;
-}
 
 
 .textStyle {}
@@ -544,7 +566,7 @@
   grid-auto-flow: column;
   right: 0;
   z-index: 100;
-  font-size: 1rem;
+  // font-size: 1rem;
   font-weight: 800;
   text-decoration: linear-gradient(to left, #f82424, #000000);
   background-clip: text;
