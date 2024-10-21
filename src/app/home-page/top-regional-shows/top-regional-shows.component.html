@@ -11,12 +11,28 @@
 
   </div>
 </div> -->
-<div style="display: grid;grid-template-columns: .7fr .4fr;margin: 1rem 0;">
+<div style="display: grid;grid-template-columns: .7fr .4fr;margin: 1rem 0; align-items: center;">
   <p
-  style="justify-content: start; font-family: 'Jost', sans-serif;letter-spacing: 0.02em;margin: 0;font-size: 28px;font-weight: 600;line-height: 36px;font-style: normal;padding: .5rem 0;margin: 0 1rem;">
+  style="justify-content: start; font-family: 'Jost', sans-serif;letter-spacing: 0.02em;margin: 0;font-size: 24px;font-weight: 600;line-height: 27px;font-style: normal;padding: .5rem 0;margin: 0 1rem;">
   Forthcoming Releases</p>
   <button (click)="openMoreVideosModal()"
-    style="border: none;justify-self: end; align-items: center; font-family: 'Jost', sans-serif;letter-spacing: 0.02em;font-size: 14px;font-weight: bold;line-height: 36px;font-style: normal;text-transform: uppercase;background-color: #e50916;color: white;padding: 0 1.5rem;margin-right: 18px">See More</button>
+    style="border: none;
+    justify-self: end;
+    align-items: center;
+    font-family: 'Jost', sans-serif;
+    letter-spacing: 0.02em;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 36px;
+    font-style: normal;
+    text-transform: uppercase;
+    background-color: #e50916;
+    color: white;
+    /* padding: 0 1.35rem; */
+    margin-right: 18px;
+    height: 32px;
+    display: grid;
+    align-content: center;">See More</button>
 
 </div>
 
@@ -33,24 +49,31 @@
 
 
       <p
-        style="display: grid;text-align: start;padding: .8rem;text-transform: capitalize; font-family: 'Jost', sans-serif;letter-spacing: 0.02em;margin: 0;font-size: 20px;">
+        style="display: grid;text-align: start;padding: .8rem;text-transform: capitalize; font-family: 'Jost', sans-serif;letter-spacing: 0.02em;margin: 0;font-size: 20px; font-weight: bold;">
         {{ movie?.title }}</p>
 
         <div *ngIf="showStar" class="star-rating">
           <span *ngFor="let star of getStars(movie.rating)" class="star" [ngClass]="{'filled': star.filled}">&#9733;</span>
         </div>
       <div
-        style="display: grid;grid-template-columns: auto auto;margin: 0 .8rem;grid-auto-flow: column;align-items: center;;">
+        style="display: grid;
+        /* grid-template-columns: 4.5rem 0.8rem; */
+        margin: 0 .5rem;
+        grid-auto-flow: column;
+        align-items: center;
+        place-content: space-evenly;
+        text-align-last: center;
+        ">
         <p
-          style="margin: 0;text-transform: capitalize; font-family: 'Jost', sans-serif;letter-spacing: 0.02em;margin: 0;font-size: 16px;line-height: normal;color: #cecfd1;text-align: left;overflow: auto;">
+          style="margin: 0;text-transform: capitalize; font-family: 'Jost', sans-serif;letter-spacing: 0.02em;margin: 0;font-size: 10px;line-height: normal;color: #cecfd1;text-align: left;overflow: auto;">
           {{ movie?.duration }} </p>
+          <mat-icon style="font-size: .25rem;align-items: center;display: grid;align-items: center;">circle</mat-icon>
         <div style="display: grid;grid-template-columns: min-content auto;align-items: center;">
-          <mat-icon style="font-size: .5rem;align-items: center;display: grid;align-items: center;">circle</mat-icon>
-          <span style=" text-align: start;color: #e50916;font-weight: 600;">{{ movie?.type }} </span>
+          <span style=" text-align: start;color: #e50916;font-weight: 600; font-size: 12px;">{{ movie?.type }} </span>
         </div>
-        <p
+        <!-- <p
           style="display: grid;text-align: center;margin: 0;font-family: 'Jost', sans-serif;letter-spacing: 0.02em;margin: 0;font-size: 20px;font-weight: 400;line-height: 28px;font-style: normal;text-transform: capitalize;">
-          {{ movie?.subDiscription }}</p>
+          {{ movie?.subDiscription }}</p> -->
 
       </div>
     </div>

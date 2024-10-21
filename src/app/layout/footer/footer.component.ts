@@ -9,15 +9,15 @@ import { Component } from '@angular/core';
 export class FooterComponent {
 
   onInstaClick() {
-    window.open('https://www.instagram.com/cinemakompanyofficial/', '_blank');
+    window.open('https://www.instagram.com/cinemakompanyofficial', '_blank');
     
   }
   onFbClick() {
-    window.open('https://www.facebook.com/BOOMCinemazOfficial', '_blank');
+    window.open('https://www.facebook.com/CinemaKompany', '_blank');
     
   }
   onTwitterClick() {
-    window.open('https://twitter.com/BOOMCinemaz', '_blank');
+    window.open('https://www.x.com/cinemakompany', '_blank');
 
   }
 

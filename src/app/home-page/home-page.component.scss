@@ -1,0 +1,21 @@
+.main{
+    display: grid;
+    row-gap: 3rem;
+}
+
+@media screen and (max-width :500px) {
+    .main{
+        display: grid;
+        row-gap: 0.6rem;
+    }
+  }
+  
+  
+  
+  @media screen and (min-width :740px) {
+
+    .main{
+        display: grid;
+        row-gap: 3rem;
+    }
+  }

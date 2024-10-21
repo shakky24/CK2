@@ -2,11 +2,11 @@
 
     <div>
         <div style="position: absolute;left: 2%;z-index: 999;top: 0%;">
-            <img height="22%" width="18%" style="margin-top: 0.2rem;" src="assets/images/logo3.png" alt="Logo">
+            <img class="main-logo" src="assets/images/logo3.png" alt="Logo">
         </div>
         <div class="header">
             <div class="menu-item">
-                <p class="menu-link" (mouseover)="showDropdown('home')" [class.selected]="activeDropdown === 'home'" (mouseleave)="hideDropdown()">Home</p>
+                <p class="menu-link" style="" (mouseover)="showDropdown('home')" [class.selected]="activeDropdown === 'home'" (mouseleave)="hideDropdown()">Home</p>
                 <!-- <div *ngIf="activeDropdown === 'home'" class="dropdown-content">
                     <p (click)="onItemClick('ott')">Now In OTT</p>
                     <p>Now In Theatres</p>
