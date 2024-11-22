@@ -18,8 +18,10 @@
 }
 
 .image {
-  max-width: 100%;
-  height: 32%;
+  height: 23rem;
+  width: 440px;
+  // width: 100%;
+  height: 194px;
 }
 
 .description {
@@ -70,4 +72,12 @@
 /* Optional: Style the thumb (the draggable part of the scrollbar) */
 ::-webkit-scrollbar-thumb {
   background: transparent;
+}
+
+@media screen and (min-width :375px) {
+  .image {
+    width: 380px;
+    // width: 100%;
+    height: 180px;
+  } 
 }
